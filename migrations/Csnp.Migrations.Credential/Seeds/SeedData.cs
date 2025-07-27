@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Csnp.Credential.Infrastructure.Persistence.Shared;
+using Microsoft.AspNetCore.Identity;
 
 namespace Csnp.Migrations.Credential.Seeds;
 
@@ -6,19 +7,19 @@ public static class SeedData
 {
     #region -- Methods --
 
-    public static async Task SeedAsync(UserManager<User> userManager, RoleManager<Role> roleManager)
+    public static async Task SeedAsync(UserManager<UserEntity> userManager, RoleManager<RoleEntity> roleManager)
     {
         // Seed Roles
         if (!await roleManager.RoleExistsAsync("Admin"))
         {
-            await roleManager.CreateAsync(new Role { Name = "Admin" });
+            await roleManager.CreateAsync(new RoleEntity { Name = "Admin" });
         }
 
         // Seed Admin User
         var adminUser = await userManager.FindByEmailAsync("admin@csnp.local");
         if (adminUser == null)
         {
-            var user = new User
+            var user = new UserEntity
             {
                 UserName = "admin",
                 Email = "admin@csnp.local",

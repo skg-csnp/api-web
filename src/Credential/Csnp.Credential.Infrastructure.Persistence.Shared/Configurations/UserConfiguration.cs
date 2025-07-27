@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Csnp.Migrations.Credential.Configurations;
+namespace Csnp.Credential.Infrastructure.Persistence.Shared.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 {
     #region -- Methods --
 
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
         builder.ToTable("Users", "credential");
         builder.Property(p => p.DisplayName).HasMaxLength(256);

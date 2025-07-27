@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Csnp.Migrations.Credential;
+namespace Csnp.Credential.Infrastructure.Persistence.Shared;
 
-public class User : IdentityUser<long>
+public class UserEntity : IdentityUser<long>
 {
     #region -- Properties --
 

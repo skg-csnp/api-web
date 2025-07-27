@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Csnp.Credential.Infrastructure.Persistence.Shared;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace Csnp.Migrations.Credential;
@@ -12,7 +13,7 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
             : "Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
 
         var optionsBuilder = new DbContextOptionsBuilder<CredentialDbContext>();
-        optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("Csnp.Migrations.Credential"));
 
         return new CredentialDbContext(optionsBuilder.Options);
     }

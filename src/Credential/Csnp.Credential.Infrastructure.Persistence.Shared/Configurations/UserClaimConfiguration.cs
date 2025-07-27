@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Csnp.Migrations.Credential.Configurations;
+namespace Csnp.Credential.Infrastructure.Persistence.Shared.Configurations;
 
 public class UserClaimConfiguration : IEntityTypeConfiguration<IdentityUserClaim<long>>
 {

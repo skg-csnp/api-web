@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Csnp.Migrations.Credential;
+namespace Csnp.Credential.Infrastructure.Persistence.Shared;
 
-public class CredentialDbContext : IdentityDbContext<User, Role, long>
+public class CredentialDbContext : IdentityDbContext<UserEntity, RoleEntity, long>
 {
     #region -- Overrides --
 
