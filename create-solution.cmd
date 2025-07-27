@@ -254,7 +254,7 @@ goto :eof
 
 :create_webapi
 if not exist "%~dp1" mkdir "%~dp1" 2>nul
-dotnet new webapi -n %~nx1 -o %1 --force > nul 2>&1
+dotnet new webapi -n %~nx1 -o %1 --force > nul 2>&1 --use-controllers --use-program-main
 goto :eof
 
 :create_mvc
