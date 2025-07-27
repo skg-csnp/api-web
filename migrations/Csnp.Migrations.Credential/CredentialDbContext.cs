@@ -10,6 +10,8 @@ public class CredentialDbContext : IdentityDbContext<User, Role, long>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(typeof(CredentialDbContext).Assembly);
     }
 
     #endregion

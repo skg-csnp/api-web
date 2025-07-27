@@ -60,6 +60,7 @@ In **Package Manager Console**:
 
 ```powershell
 Add-Migration InitialCreate
+Add-Migration FixDisplayNameColumn
 ```
 
 > Make sure `Csnp.Migrations.Credential` is selected as the **Default Project** in the console.
@@ -95,6 +96,7 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
 
 ```powershell
 Update-Database InitialCreate -Args '"Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;"'
+Update-Database
 ```
 
 > This will apply the schema to the database defined in your `appsettings.json`.
