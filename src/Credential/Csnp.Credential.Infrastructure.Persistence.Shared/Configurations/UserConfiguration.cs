@@ -12,6 +12,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.ToTable("Users", "credential");
         builder.Property(p => p.DisplayName).HasMaxLength(256);
         builder.HasIndex(p => p.Email).IsUnique();
+        builder.Property(p => p.Id).ValueGeneratedNever();
     }
 
     #endregion

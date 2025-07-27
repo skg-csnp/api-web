@@ -1,6 +1,7 @@
 ﻿using Csnp.Credential.Domain.Interfaces;
 using Csnp.Credential.Infrastructure.Persistence.Shared;
 using Csnp.Credential.Infrastructure.Repositories;
+using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,16 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString));
 
         services.AddScoped<IUserRepository, UserRepository>();
+
+        services.AddSingleton<IdGenerator>(_ =>
+        {
+            var epoch = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var structure = new IdStructure(45, 2, 16);
+            var options = new IdGeneratorOptions(structure, new DefaultTimeSource(epoch));
+
+            var workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out var id) ? id : 0;
+            return new IdGenerator(workerId, options);
+        });
 
         return services;
     }

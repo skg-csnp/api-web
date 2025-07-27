@@ -4,7 +4,7 @@ namespace Csnp.Credential.Domain.Interfaces;
 
 public interface IUserRepository
 {
-    Task<User?> GetByIdAsync(Guid id);
+    Task<User?> GetByIdAsync(long id);
     Task AddAsync(User user);
     Task<IEnumerable<User>> GetAllAsync();
 }

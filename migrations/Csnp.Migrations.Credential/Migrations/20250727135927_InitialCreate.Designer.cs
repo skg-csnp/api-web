@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Csnp.Migrations.Credential.Migrations
 {
     [DbContext(typeof(CredentialDbContext))]
-    [Migration("20250727123941_RefactorToUsePersistenceShared")]
-    partial class RefactorToUsePersistenceShared
+    [Migration("20250727135927_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,10 +58,7 @@ namespace Csnp.Migrations.Credential.Migrations
             modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");

@@ -55,10 +55,7 @@ namespace Csnp.Migrations.Credential.Migrations
             modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");

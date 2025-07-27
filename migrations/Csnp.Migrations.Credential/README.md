@@ -85,9 +85,6 @@ In **Package Manager Console**:
 
 ```powershell
 Add-Migration InitialCreate
-Add-Migration FixDisplayNameColumn
-Add-Migration RenameAspNetRolesToCredentialSchema
-Add-Migration RefactorToUsePersistenceShared
 ```
 
 > Make sure `Csnp.Migrations.Credential` is selected as the **Default Project** in the console.
