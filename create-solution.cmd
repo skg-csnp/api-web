@@ -12,85 +12,262 @@ set TEST_DIR=%ROOT_DIR%\tests
 set SHARED_DIR=%ROOT_DIR%\shared
 set MIGRATIONS_DIR=%ROOT_DIR%\migrations
 
-:: Helper to create classlib
-call :create_classlib %SHARED_DIR%\Csnp.Shared.Domain
-call :create_classlib %SHARED_DIR%\Csnp.Shared.Application
-call :create_classlib %SHARED_DIR%\Csnp.Shared.Infrastructure
+echo Creating CSNP DDD Production Solution Structure...
+echo.
+
+:: SeedWork - Foundation layers
+echo Creating SeedWork foundation layers...
+call :create_classlib %SHARED_DIR%\Csnp.SeedWork.Domain
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Domain\Events
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Domain\Exceptions
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Domain\Rules
+
+call :create_classlib %SHARED_DIR%\Csnp.SeedWork.Application
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Application\Behaviors
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Application\Commands
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Application\Queries
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Application\Events
+
+call :create_classlib %SHARED_DIR%\Csnp.SeedWork.Infrastructure
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Events
+call :create_subfolder %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Messaging
+
+:: SharedKernel - Shared domain logic
+echo Creating SharedKernel...
+call :create_classlib %SHARED_DIR%\Csnp.SharedKernel
+call :create_subfolder %SHARED_DIR%\Csnp.SharedKernel\Domain
+call :create_subfolder %SHARED_DIR%\Csnp.SharedKernel\Domain\ValueObjects
+call :create_subfolder %SHARED_DIR%\Csnp.SharedKernel\Domain\Events
+call :create_subfolder %SHARED_DIR%\Csnp.SharedKernel\Application
+
+:: Common - Cross-cutting utilities
+echo Creating Common cross-cutting layer...
+call :create_classlib %SHARED_DIR%\Csnp.Common
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Services
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Abstractions
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Utils
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Security
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Logging
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Caching
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Monitoring
+call :create_subfolder %SHARED_DIR%\Csnp.Common\Configuration
+
+:: EventBus - Event-driven communication
+echo Creating EventBus layer...
+call :create_classlib %SHARED_DIR%\Csnp.EventBus
+call :create_subfolder %SHARED_DIR%\Csnp.EventBus\Abstractions
+call :create_subfolder %SHARED_DIR%\Csnp.EventBus\InMemory
+call :create_subfolder %SHARED_DIR%\Csnp.EventBus\RabbitMQ
 
 :: Credential Bounded Context
+echo Creating Credential bounded context...
 call :create_webapi %SRC_DIR%\Credential\Csnp.Credential.Api
+
 call :create_classlib %SRC_DIR%\Credential\Csnp.Credential.Application
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Application\Commands
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Application\Queries
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Application\Events
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Application\Behaviors
+
 call :create_classlib %SRC_DIR%\Credential\Csnp.Credential.Domain
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Domain\Aggregates
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Domain\Events
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Domain\Specifications
+
 call :create_classlib %SRC_DIR%\Credential\Csnp.Credential.Infrastructure
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Persistence
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\External
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Services
+call :create_subfolder %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Events
 
 :: Notification Bounded Context
+echo Creating Notification bounded context...
 call :create_webapi %SRC_DIR%\Notification\Csnp.Notification.Api
+
 call :create_classlib %SRC_DIR%\Notification\Csnp.Notification.Application
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Application\Commands
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Application\Queries
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Application\Events
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Application\Behaviors
+
 call :create_classlib %SRC_DIR%\Notification\Csnp.Notification.Domain
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Domain\Aggregates
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Domain\Events
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Domain\Specifications
+
 call :create_classlib %SRC_DIR%\Notification\Csnp.Notification.Infrastructure
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Persistence
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\External
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Services
+call :create_subfolder %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Events
 
 :: Presentation
+echo Creating Presentation layer...
 call :create_mvc %SRC_DIR%\Presentation\Csnp.Presentation.Web
 
 :: Migrations
+echo Creating Migration projects...
 call :create_classlib %MIGRATIONS_DIR%\Csnp.Migrations.Credential
+call :create_subfolder %MIGRATIONS_DIR%\Csnp.Migrations.Credential\Configurations
+call :create_subfolder %MIGRATIONS_DIR%\Csnp.Migrations.Credential\Seeds
+
 call :create_classlib %MIGRATIONS_DIR%\Csnp.Migrations.Notification
+call :create_subfolder %MIGRATIONS_DIR%\Csnp.Migrations.Notification\Configurations
+call :create_subfolder %MIGRATIONS_DIR%\Csnp.Migrations.Notification\Seeds
 
 :: Tests
+echo Creating test projects...
 call :create_test %TEST_DIR%\Csnp.Credential.Tests.Unit
 call :create_test %TEST_DIR%\Csnp.Credential.Tests.Integration
+call :create_test %TEST_DIR%\Csnp.Credential.Tests.Architecture
 call :create_test %TEST_DIR%\Csnp.Notification.Tests.Unit
 call :create_test %TEST_DIR%\Csnp.Notification.Tests.Integration
+call :create_test %TEST_DIR%\Csnp.Notification.Tests.Architecture
 
+echo Adding all projects to solution...
 :: Add all projects to solution
 for /R %%f in (*.csproj) do (
     dotnet sln %SOLUTION_NAME%.sln add "%%f"
 )
 
-:: Add references for Credential
+echo Setting up project references...
+
+:: SeedWork layer dependencies (Foundation)
+dotnet add %SHARED_DIR%\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj
+
+dotnet add %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj
+
+:: SharedKernel dependencies
+dotnet add %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj
+
+:: Common dependencies
+dotnet add %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj
+
+:: EventBus dependencies
+dotnet add %SHARED_DIR%\Csnp.EventBus\Csnp.EventBus.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj ^
+    %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj
+
+:: Credential bounded context references
 dotnet add %SRC_DIR%\Credential\Csnp.Credential.Api\Csnp.Credential.Api.csproj reference ^
-    %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj
+    %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Csnp.Credential.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj
 
 dotnet add %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj reference ^
     %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj ^
-    %SHARED_DIR%\Csnp.Shared.Application\Csnp.Shared.Application.csproj
+    %SHARED_DIR%\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj ^
+    %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj ^
+    %SHARED_DIR%\Csnp.EventBus\Csnp.EventBus.csproj
+
+dotnet add %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj ^
+    %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj
 
 dotnet add %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Csnp.Credential.Infrastructure.csproj reference ^
     %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj ^
-    %SHARED_DIR%\Csnp.Shared.Infrastructure\Csnp.Shared.Infrastructure.csproj
+    %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj ^
+    %SHARED_DIR%\Csnp.EventBus\Csnp.EventBus.csproj
 
-:: Add references for Notification
+:: Notification bounded context references
 dotnet add %SRC_DIR%\Notification\Csnp.Notification.Api\Csnp.Notification.Api.csproj reference ^
-    %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj
+    %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj
 
 dotnet add %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj reference ^
     %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj ^
-    %SHARED_DIR%\Csnp.Shared.Application\Csnp.Shared.Application.csproj
+    %SHARED_DIR%\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj ^
+    %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj ^
+    %SHARED_DIR%\Csnp.EventBus\Csnp.EventBus.csproj
+
+dotnet add %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj reference ^
+    %SHARED_DIR%\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj ^
+    %SHARED_DIR%\Csnp.SharedKernel\Csnp.SharedKernel.csproj
 
 dotnet add %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj reference ^
     %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj ^
-    %SHARED_DIR%\Csnp.Shared.Infrastructure\Csnp.Shared.Infrastructure.csproj
+    %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj ^
+    %SHARED_DIR%\Csnp.EventBus\Csnp.EventBus.csproj
 
 :: Presentation references
 dotnet add %SRC_DIR%\Presentation\Csnp.Presentation.Web\Csnp.Presentation.Web.csproj reference ^
     %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj ^
+    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj
+
+:: Migration projects references
+dotnet add %MIGRATIONS_DIR%\Csnp.Migrations.Credential\Csnp.Migrations.Credential.csproj reference ^
+    %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Csnp.Credential.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj
+
+dotnet add %MIGRATIONS_DIR%\Csnp.Migrations.Notification\Csnp.Migrations.Notification.csproj reference ^
+    %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj ^
+    %SHARED_DIR%\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj
+
+:: Test project references
+dotnet add %TEST_DIR%\Csnp.Credential.Tests.Unit\Csnp.Credential.Tests.Unit.csproj reference ^
+    %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj
+
+dotnet add %TEST_DIR%\Csnp.Credential.Tests.Integration\Csnp.Credential.Tests.Integration.csproj reference ^
+    %SRC_DIR%\Credential\Csnp.Credential.Api\Csnp.Credential.Api.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Csnp.Credential.Infrastructure.csproj
+
+dotnet add %TEST_DIR%\Csnp.Credential.Tests.Architecture\Csnp.Credential.Tests.Architecture.csproj reference ^
+    %SRC_DIR%\Credential\Csnp.Credential.Domain\Csnp.Credential.Domain.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Application\Csnp.Credential.Application.csproj ^
+    %SRC_DIR%\Credential\Csnp.Credential.Infrastructure\Csnp.Credential.Infrastructure.csproj
+
+dotnet add %TEST_DIR%\Csnp.Notification.Tests.Unit\Csnp.Notification.Tests.Unit.csproj reference ^
+    %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj ^
     %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj
+
+dotnet add %TEST_DIR%\Csnp.Notification.Tests.Integration\Csnp.Notification.Tests.Integration.csproj reference ^
+    %SRC_DIR%\Notification\Csnp.Notification.Api\Csnp.Notification.Api.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj
+
+dotnet add %TEST_DIR%\Csnp.Notification.Tests.Architecture\Csnp.Notification.Tests.Architecture.csproj reference ^
+    %SRC_DIR%\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj ^
+    %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj
 
 goto :eof
 
-:: Functions
+:: Helper Functions
 :create_classlib
-dotnet new classlib -n %~nx1 -o %1
+if not exist "%~dp1" mkdir "%~dp1" 2>nul
+dotnet new classlib -n %~nx1 -o %1 --force > nul 2>&1
 goto :eof
 
 :create_webapi
-dotnet new webapi -n %~nx1 -o %1
+if not exist "%~dp1" mkdir "%~dp1" 2>nul
+dotnet new webapi -n %~nx1 -o %1 --force > nul 2>&1
 goto :eof
 
 :create_mvc
-dotnet new mvc -n %~nx1 -o %1
+if not exist "%~dp1" mkdir "%~dp1" 2>nul
+dotnet new mvc -n %~nx1 -o %1 --force > nul 2>&1
 goto :eof
 
 :create_test
-dotnet new xunit -n %~nx1 -o %1
+if not exist "%~dp1" mkdir "%~dp1" 2>nul
+dotnet new xunit -n %~nx1 -o %1 --force > nul 2>&1
+goto :eof
+
+:create_subfolder
+if not exist "%1" mkdir "%1" 2>nul
+echo. > "%1\.gitkeep"
 goto :eof
