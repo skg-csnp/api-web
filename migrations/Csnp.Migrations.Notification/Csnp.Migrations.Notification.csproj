@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

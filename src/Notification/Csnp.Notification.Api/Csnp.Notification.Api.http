@@ -1,0 +1,6 @@
+@Csnp.Notification.Api_HostAddress = http://localhost:5117
+
+GET {{Csnp.Notification.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
