@@ -1,3 +1,5 @@
+using Csnp.Credential.Application;
+using Csnp.Credential.Infrastructure;
 
 namespace Csnp.Credential.Api;
 
@@ -13,12 +15,21 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddApplication();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();

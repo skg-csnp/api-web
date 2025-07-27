@@ -34,7 +34,7 @@ public class UserRepository : IUserRepository
     {
         var entity = new UserEntity
         {
-            Id = user.Id,
+            // Id = user.Id,
             UserName = user.UserName,
             DisplayName = user.DisplayName
         };
