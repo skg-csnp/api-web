@@ -1,5 +1,5 @@
-﻿namespace Csnp.Presentation.Common.Versioning;
+namespace Csnp.Presentation.Common.Versioning;
 
-internal class ApiVersionConstants
+public static class ApiVersionConstants
 {
 }

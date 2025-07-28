@@ -1,5 +1,5 @@
-﻿namespace Csnp.Presentation.Common.Filters;
+namespace Csnp.Presentation.Common.Filters;
 
-internal class ValidationFilter
+public static class ValidationFilter
 {
 }

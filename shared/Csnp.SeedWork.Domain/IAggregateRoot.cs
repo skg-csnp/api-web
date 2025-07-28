@@ -1,4 +1,4 @@
-﻿namespace Csnp.SeedWork.Domain;
+namespace Csnp.SeedWork.Domain;
 
 /// <summary>
 /// Marker interface for aggregates

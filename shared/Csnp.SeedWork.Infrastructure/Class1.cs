@@ -1,4 +1,4 @@
-﻿namespace Csnp.SeedWork.Infrastructure;
+namespace Csnp.SeedWork.Infrastructure;
 
 public class Class1
 {

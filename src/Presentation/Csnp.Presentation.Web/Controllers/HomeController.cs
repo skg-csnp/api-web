@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using Csnp.Presentation.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Csnp.Presentation.Web.Controllers;
 

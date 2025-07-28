@@ -1,4 +1,4 @@
-﻿namespace Csnp.Notification.Tests.Unit;
+namespace Csnp.Notification.Tests.Unit;
 
 public class UnitTest1
 {

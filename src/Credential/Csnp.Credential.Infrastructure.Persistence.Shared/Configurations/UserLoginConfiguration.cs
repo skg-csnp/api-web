@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Csnp.Credential.Infrastructure.Persistence.Shared.Configurations;
+namespace Csnp.Credential.Infrastructure.Persistence.Configurations;
 
 public class UserLoginConfiguration : IEntityTypeConfiguration<IdentityUserLogin<long>>
 {

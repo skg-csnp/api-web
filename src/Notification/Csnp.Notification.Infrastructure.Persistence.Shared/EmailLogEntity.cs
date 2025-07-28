@@ -1,4 +1,4 @@
-﻿namespace Csnp.Notification.Infrastructure.Persistence.Shared;
+namespace Csnp.Notification.Infrastructure.Persistence;
 
 public class EmailLogEntity
 {

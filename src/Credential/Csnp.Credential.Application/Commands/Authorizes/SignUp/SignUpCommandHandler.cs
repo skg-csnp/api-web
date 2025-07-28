@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.SharedKernel.Domain.ValueObjects;
 using MediatR;
@@ -24,10 +24,10 @@ public class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
 
     public async Task<long> Handle(SignUpCommand request, CancellationToken cancellationToken)
     {
-        var existingUser = await _userReadRepository.GetByUserNameAsync(request.Email, cancellationToken);
+        User? existingUser = await _userReadRepository.GetByUserNameAsync(request.Email, cancellationToken);
         if (existingUser is not null)
         {
-            throw new ApplicationException("User already exists with the given email.");
+            throw new InvalidOperationException("User already exists with the given email.");
         }
 
         var email = EmailAddress.Create(request.Email);

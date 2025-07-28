@@ -1,4 +1,4 @@
-﻿namespace Csnp.Credential.Application.Commands.Authorizes.SignIn;
+namespace Csnp.Credential.Application.Commands.Authorizes.SignIn;
 
 public class SignInResponse
 {

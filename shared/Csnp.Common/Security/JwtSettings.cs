@@ -1,4 +1,4 @@
-﻿namespace Csnp.Common.Security;
+namespace Csnp.Common.Security;
 
 public class JwtSettings
 {

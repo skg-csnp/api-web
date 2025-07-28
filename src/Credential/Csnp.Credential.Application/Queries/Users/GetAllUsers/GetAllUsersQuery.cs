@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Application.Queries.Users.Dtos;
+using Csnp.Credential.Application.Queries.Users.Dtos;
 using MediatR;
 
 namespace Csnp.Credential.Application.Queries.Users.GetAllUsers;

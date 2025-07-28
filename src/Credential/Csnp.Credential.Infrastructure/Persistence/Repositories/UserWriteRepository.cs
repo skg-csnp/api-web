@@ -1,7 +1,6 @@
-﻿using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
-using Csnp.Credential.Infrastructure.Persistence.Shared;
 using IdGen;
 using Microsoft.AspNetCore.Identity;
 
@@ -20,13 +19,13 @@ public class UserWriteRepository : IUserWriteRepository
 
     public async Task AddAsync(User user, CancellationToken cancellationToken)
     {
-        var entity = user.ToEntity();
+        UserEntity entity = user.ToEntity();
         entity.Id = _idGen.CreateId();
 
-        var result = await _userManager.CreateAsync(entity, user.Password);
+        IdentityResult result = await _userManager.CreateAsync(entity, user.Password);
         if (!result.Succeeded)
         {
-            var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+            string errors = string.Join("; ", result.Errors.Select(e => e.Description));
             throw new InvalidOperationException($"Create user failed: {errors}");
         }
 

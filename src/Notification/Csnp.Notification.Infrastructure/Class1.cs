@@ -1,4 +1,4 @@
-﻿namespace Csnp.Notification.Infrastructure;
+namespace Csnp.Notification.Infrastructure;
 
 public class Class1
 {

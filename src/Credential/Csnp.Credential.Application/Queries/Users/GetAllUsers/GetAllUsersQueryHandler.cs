@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Application.Queries.Users.Dtos;
 using MediatR;
 
@@ -15,7 +15,7 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<
 
     public async Task<IEnumerable<UserDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
     {
-        var users = await _userRepo.GetAllAsync(cancellationToken);
+        IReadOnlyList<Domain.Entities.User> users = await _userRepo.GetAllAsync(cancellationToken);
         return users.Select(u => new UserDto(u.Id, u.Email.Value, u.DisplayName));
     }
 }

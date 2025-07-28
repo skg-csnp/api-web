@@ -34,7 +34,7 @@ public class AuthorizeController : BaseV1Controller
     [SwaggerOperation(Summary = "Authorize.SignIn.Summary", Description = "Authorize.SignIn.Description")]
     public async Task<IActionResult> SignIn([FromBody] SignInCommand request)
     {
-        var response = await _mediator.Send(request);
+        SignInResponse response = await _mediator.Send(request);
         return Ok(response);
     }
 
@@ -50,7 +50,7 @@ public class AuthorizeController : BaseV1Controller
     [SwaggerOperation(Summary = "Authorize.SignUp.Summary", Description = "Authorize.SignUp.Description")]
     public async Task<IActionResult> SignUp([FromBody] SignUpCommand request)
     {
-        var response = await _mediator.Send(request);
+        long response = await _mediator.Send(request);
         return Ok(response);
     }
 

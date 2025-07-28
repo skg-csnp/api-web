@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Csnp.Credential.Infrastructure.Persistence.Shared;
+namespace Csnp.Credential.Infrastructure.Persistence;
 
 public class CredentialDbContext : IdentityDbContext<UserEntity, RoleEntity, long>
 {

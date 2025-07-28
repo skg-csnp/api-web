@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Application.Commands.Authorizes.SignUp;
+using Csnp.Credential.Application.Commands.Authorizes.SignUp;
 using FluentValidation;
 
 namespace Csnp.Credential.Application.Commands.Users.CreateUser;

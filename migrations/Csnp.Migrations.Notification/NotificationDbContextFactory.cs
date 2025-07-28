@@ -1,4 +1,4 @@
-﻿using Csnp.Notification.Infrastructure.Persistence.Shared;
+using Csnp.Notification.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -8,7 +8,7 @@ public class NotificationDbContextFactory : IDesignTimeDbContextFactory<Notifica
 {
     public NotificationDbContext CreateDbContext(string[] args)
     {
-        var connectionString = args.Length > 0
+        string connectionString = args.Length > 0
             ? args[0]
             : "Server=localhost;Database=local_csnp_notification;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
 

@@ -24,14 +24,14 @@ public class UsersController : BaseV1Controller
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
     {
-        var id = await _mediator.Send(command);
+        long id = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetAll), new { id }, null);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var users = await _mediator.Send(new GetAllUsersQuery());
+        IEnumerable<Application.Queries.Users.Dtos.UserDto> users = await _mediator.Send(new GetAllUsersQuery());
         return Ok(users);
     }
 

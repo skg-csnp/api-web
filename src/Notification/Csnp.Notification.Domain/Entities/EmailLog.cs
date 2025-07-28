@@ -1,4 +1,4 @@
-﻿namespace Csnp.Notification.Domain.Entities;
+namespace Csnp.Notification.Domain.Entities;
 
 public class EmailLog
 {

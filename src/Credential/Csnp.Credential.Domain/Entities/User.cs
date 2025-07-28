@@ -1,13 +1,13 @@
-﻿using Csnp.SeedWork.Domain;
+using Csnp.SeedWork.Domain;
 using Csnp.SharedKernel.Domain.ValueObjects;
 
 namespace Csnp.Credential.Domain.Entities;
 
 public class User : Entity<long>, IAggregateRoot
 {
-    public EmailAddress Email { get; private set; }
-    public string Password { get; private set; }
-    public string DisplayName { get; private set; }
+    public EmailAddress Email { get; private set; } = default!;
+    public string Password { get; private set; } = default!;
+    public string DisplayName { get; private set; } = default!;
 
     protected User() { } // For EF
 

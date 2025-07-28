@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Csnp.Common.Security;
 
@@ -22,7 +23,7 @@ public class JwtService : IJwtService
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString(CultureInfo.InvariantCulture)),
             new Claim(ClaimTypes.Name, userName)
         };
 
@@ -48,7 +49,7 @@ public class JwtService : IJwtService
         try
         {
             var handler = new JwtSecurityTokenHandler();
-            var principal = handler.ValidateToken(token, new TokenValidationParameters
+            ClaimsPrincipal principal = handler.ValidateToken(token, new TokenValidationParameters
             {
                 ValidateIssuer = true,
                 ValidIssuer = _settings.Issuer,
@@ -73,7 +74,7 @@ public class JwtService : IJwtService
         var handler = new JwtSecurityTokenHandler();
         try
         {
-            var jwtToken = handler.ReadJwtToken(token);
+            JwtSecurityToken jwtToken = handler.ReadJwtToken(token);
             var identity = new ClaimsIdentity(jwtToken.Claims, "jwt");
             return new ClaimsPrincipal(identity);
         }
@@ -85,7 +86,7 @@ public class JwtService : IJwtService
 
     public string GenerateRefreshToken()
     {
-        var randomBytes = new byte[64];
+        byte[] randomBytes = new byte[64];
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(randomBytes);
         return Convert.ToBase64String(randomBytes);

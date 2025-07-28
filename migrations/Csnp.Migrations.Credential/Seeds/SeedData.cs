@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Infrastructure.Persistence.Shared;
+using Csnp.Credential.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 
 namespace Csnp.Migrations.Credential.Seeds;
@@ -16,7 +16,7 @@ public static class SeedData
         }
 
         // Seed Admin User
-        var adminUser = await userManager.FindByEmailAsync("admin@csnp.local");
+        UserEntity? adminUser = await userManager.FindByEmailAsync("admin@csnp.local");
         if (adminUser == null)
         {
             var user = new UserEntity

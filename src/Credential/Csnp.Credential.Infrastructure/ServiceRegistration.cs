@@ -1,6 +1,6 @@
-﻿using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Infrastructure.Persistence;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
-using Csnp.Credential.Infrastructure.Persistence.Shared;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,11 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Csnp.Credential.Infrastructure;
 
-public static class DependencyInjection
+public static class ServiceRegistration
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var connectionString = config.GetConnectionString("Default");
+        string? connectionString = config.GetConnectionString("Default");
 
         services.AddDbContext<CredentialDbContext>(options =>
             options.UseSqlServer(connectionString));
@@ -41,7 +41,7 @@ public static class DependencyInjection
             var structure = new IdStructure(45, 2, 16);
             var options = new IdGeneratorOptions(structure, new DefaultTimeSource(epoch));
 
-            var workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out var id) ? id : 0;
+            int workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out int id) ? id : 0;
             return new IdGenerator(workerId, options);
         });
 

@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace Csnp.Credential.Application.Commands.Users.CreateUser;
 

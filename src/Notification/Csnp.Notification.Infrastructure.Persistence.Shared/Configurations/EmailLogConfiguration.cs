@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Csnp.Notification.Infrastructure.Persistence.Shared.Configurations;
+namespace Csnp.Notification.Infrastructure.Persistence.Configurations;
 
 public class EmailLogConfiguration : IEntityTypeConfiguration<EmailLogEntity>
 {

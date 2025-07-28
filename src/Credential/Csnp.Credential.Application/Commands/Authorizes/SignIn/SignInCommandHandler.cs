@@ -1,4 +1,4 @@
-﻿using Csnp.Common.Security;
+using Csnp.Common.Security;
 using Csnp.Credential.Application.Abstractions.Persistence;
 using MediatR;
 
@@ -17,21 +17,21 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, SignInRespons
 
     public async Task<SignInResponse> Handle(SignInCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userReadRepository.GetByEmailAsync(request.Email, cancellationToken);
+        Domain.Entities.User? user = await _userReadRepository.GetByEmailAsync(request.Email, cancellationToken);
         if (user is null)
         {
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
-        var isPasswordValid = await _userReadRepository.CheckPasswordAsync(user, request.Password);
+        bool isPasswordValid = await _userReadRepository.CheckPasswordAsync(user, request.Password);
         if (!isPasswordValid)
         {
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
-        var accessToken = _jwtService.GenerateToken(user.Id, user.DisplayName);
-        var refreshToken = _jwtService.GenerateRefreshToken();
-        var expiresAt = DateTime.UtcNow.AddMinutes(30);
+        string accessToken = _jwtService.GenerateToken(user.Id, user.DisplayName);
+        string refreshToken = _jwtService.GenerateRefreshToken();
+        DateTime expiresAt = DateTime.UtcNow.AddMinutes(30);
 
         return new SignInResponse
         {

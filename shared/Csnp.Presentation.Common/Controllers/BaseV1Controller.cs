@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Csnp.Presentation.Common.Controllers;
@@ -17,7 +17,7 @@ public abstract class BaseV1Controller : ControllerBase
     /// Initialize
     /// </summary>
     /// <param name="mediator">Mediator</param>
-    public BaseV1Controller(ISender mediator)
+    protected BaseV1Controller(ISender mediator)
     {
         _mediator = mediator;
     }

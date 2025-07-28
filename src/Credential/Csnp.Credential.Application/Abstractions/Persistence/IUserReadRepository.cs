@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Domain.Entities;
+using Csnp.Credential.Domain.Entities;
 
 namespace Csnp.Credential.Application.Abstractions.Persistence;
 

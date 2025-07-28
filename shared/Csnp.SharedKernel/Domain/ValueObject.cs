@@ -1,4 +1,4 @@
-﻿namespace Csnp.SharedKernel.Domain;
+namespace Csnp.SharedKernel.Domain;
 
 public abstract class ValueObject
 {
@@ -7,7 +7,9 @@ public abstract class ValueObject
     public override bool Equals(object? obj)
     {
         if (obj == null || obj.GetType() != GetType())
+        {
             return false;
+        }
 
         var other = (ValueObject)obj;
         return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());

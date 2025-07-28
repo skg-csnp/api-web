@@ -1,4 +1,4 @@
-﻿namespace Csnp.Credential.Tests.Unit;
+namespace Csnp.Credential.Tests.Unit;
 
 public class UnitTest1
 {

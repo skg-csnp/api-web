@@ -1,7 +1,7 @@
-﻿using Csnp.Credential.Application.Abstractions.Persistence;
+using System.Globalization;
+using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
-using Csnp.Credential.Infrastructure.Persistence.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,19 +28,19 @@ public class UserReadRepository : IUserReadRepository
 
     public async Task<User?> GetByUserNameAsync(string userName, CancellationToken cancellationToken)
     {
-        var entity = await _userManager.FindByNameAsync(userName);
+        UserEntity? entity = await _userManager.FindByNameAsync(userName);
         return entity?.ToDomain();
     }
 
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        var entity = await _userManager.FindByEmailAsync(email);
+        UserEntity? entity = await _userManager.FindByEmailAsync(email);
         return entity?.ToDomain();
     }
 
     public async Task<bool> CheckPasswordAsync(User user, string password)
     {
-        var entity = await _userManager.FindByIdAsync(user.Id.ToString());
+        UserEntity? entity = await _userManager.FindByIdAsync(user.Id.ToString(CultureInfo.InvariantCulture));
         if (entity is null)
         {
             return false;

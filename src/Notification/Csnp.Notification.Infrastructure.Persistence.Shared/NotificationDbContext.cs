@@ -1,17 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace Csnp.Notification.Infrastructure.Persistence.Shared;
+namespace Csnp.Notification.Infrastructure.Persistence;
 
 public class NotificationDbContext : DbContext
 {
     #region -- Overrides --
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
 
-        builder.HasDefaultSchema("notification");
-        builder.ApplyConfigurationsFromAssembly(typeof(NotificationDbContext).Assembly);
+        modelBuilder.HasDefaultSchema("notification");
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationDbContext).Assembly);
     }
 
     #endregion

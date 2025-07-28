@@ -1,4 +1,4 @@
-﻿using Csnp.Credential.Infrastructure.Persistence.Shared;
+using Csnp.Credential.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -8,7 +8,7 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
 {
     public CredentialDbContext CreateDbContext(string[] args)
     {
-        var connectionString = args.Length > 0
+        string connectionString = args.Length > 0
             ? args[0]
             : "Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
 

@@ -1,5 +1,5 @@
-﻿namespace Csnp.Presentation.Common.Responses;
+namespace Csnp.Presentation.Common.Responses;
 
-internal class ApiResponse
+public static class ApiResponse
 {
 }

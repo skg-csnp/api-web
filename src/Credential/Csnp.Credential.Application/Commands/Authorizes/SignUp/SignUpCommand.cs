@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 
 namespace Csnp.Credential.Application.Commands.Authorizes.SignUp;
 

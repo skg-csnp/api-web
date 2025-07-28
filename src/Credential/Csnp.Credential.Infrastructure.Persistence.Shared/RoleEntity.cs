@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 
-namespace Csnp.Credential.Infrastructure.Persistence.Shared;
+namespace Csnp.Credential.Infrastructure.Persistence;
 
 public class RoleEntity : IdentityRole<long>
 {

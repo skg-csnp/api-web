@@ -1,5 +1,5 @@
-﻿namespace Csnp.Presentation.Common.Middleware;
+namespace Csnp.Presentation.Common.Middleware;
 
-internal class ErrorHandlingMiddleware
+public static class ErrorHandlingMiddleware
 {
 }

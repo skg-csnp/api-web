@@ -1,4 +1,4 @@
-﻿namespace Csnp.SeedWork.Application;
+namespace Csnp.SeedWork.Application;
 
 public class Class1
 {

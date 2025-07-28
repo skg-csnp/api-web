@@ -1,4 +1,4 @@
-﻿namespace Csnp.EventBus;
+namespace Csnp.EventBus;
 
 public class Class1
 {
