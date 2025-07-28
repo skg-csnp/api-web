@@ -14,10 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj" />
     <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

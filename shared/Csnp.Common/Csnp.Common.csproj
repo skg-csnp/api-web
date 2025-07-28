@@ -6,7 +6,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj" />
     <ProjectReference Include="..\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj" />
   </ItemGroup>
 

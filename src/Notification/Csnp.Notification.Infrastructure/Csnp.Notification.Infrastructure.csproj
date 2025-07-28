@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj" />
+    <PackageReference Include="IdGen" Version="3.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Csnp.Notification.Application\Csnp.Notification.Application.csproj" />
-    <ProjectReference Include="..\..\..\shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\shared\Csnp.Common\Csnp.Common.csproj" />
-    <ProjectReference Include="..\..\..\shared\Csnp.EventBus\Csnp.EventBus.csproj" />
     <ProjectReference Include="..\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
