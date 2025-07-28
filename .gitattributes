@@ -1,7 +1,24 @@
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
+
+# Auto detect text files and perform LF normalization
 * text=auto
+
+# Force CRLF for Windows
+*.cs text eol=crlf
+*.csproj text eol=crlf
+*.sln text eol=crlf
+
+# Force LF for Unix-style files  
+*.sh text eol=lf
+Dockerfile text eol=lf
+
+# Binary files
+*.dll binary
+*.exe binary
+*.png binary
+*.jpg binary
 
 ###############################################################################
 # Set default behavior for command prompt diff.
