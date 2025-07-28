@@ -1,19 +1,24 @@
 using Csnp.Credential.Application.Commands.Users;
 using Csnp.Credential.Application.Queries.Users;
+using Csnp.Presentation.Common.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Csnp.Credential.Api.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
+/// <summary>
+/// UsersController
+/// </summary>
+public class UsersController : BaseV1Controller
 {
-    private readonly ISender _mediator;
+    #region -- Methods --
 
-    public UsersController(ISender mediator)
+    /// <summary>
+    /// Initialize
+    /// </summary>
+    /// <param name="mediator">Mediator</param>
+    public UsersController(ISender mediator) : base(mediator)
     {
-        _mediator = mediator;
     }
 
     [HttpPost]
@@ -29,4 +34,6 @@ public class UsersController : ControllerBase
         var users = await _mediator.Send(new GetAllUsersQuery());
         return Ok(users);
     }
+
+    #endregion
 }
