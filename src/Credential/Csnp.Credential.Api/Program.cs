@@ -1,4 +1,5 @@
 using Csnp.Common.Security;
+using Csnp.Credential.Api.Middlewares;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
 
@@ -35,6 +36,8 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseCustomExceptionHandler();
 
         app.UseHttpsRedirection();
 
