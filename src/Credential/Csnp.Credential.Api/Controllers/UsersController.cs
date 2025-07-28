@@ -1,5 +1,5 @@
-using Csnp.Credential.Application.Commands.Users;
-using Csnp.Credential.Application.Queries.Users;
+using Csnp.Credential.Application.Commands.Users.CreateUser;
+using Csnp.Credential.Application.Queries.Users.GetAllUsers;
 using Csnp.Presentation.Common.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

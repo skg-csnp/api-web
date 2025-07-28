@@ -1,8 +1,8 @@
-﻿using Csnp.Credential.Application.Dtos;
+﻿using Csnp.Credential.Application.Queries.Users.Dtos;
 using Csnp.Credential.Domain.Interfaces;
 using MediatR;
 
-namespace Csnp.Credential.Application.Queries.Users;
+namespace Csnp.Credential.Application.Queries.Users.GetAllUsers;
 
 public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<UserDto>>
 {

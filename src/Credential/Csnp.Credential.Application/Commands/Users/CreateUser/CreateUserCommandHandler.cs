@@ -2,7 +2,7 @@
 using Csnp.Credential.Domain.Interfaces;
 using MediatR;
 
-namespace Csnp.Credential.Application.Commands.Users;
+namespace Csnp.Credential.Application.Commands.Users.CreateUser;
 
 public class CreateUserHandler : IRequestHandler<CreateUserCommand, long>
 {
