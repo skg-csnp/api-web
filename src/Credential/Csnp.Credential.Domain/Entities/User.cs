@@ -1,8 +1,36 @@
-﻿namespace Csnp.Credential.Domain.Entities;
+﻿using Csnp.SeedWork.Domain;
+using Csnp.SharedKernel.Domain.ValueObjects;
 
-public class User
+namespace Csnp.Credential.Domain.Entities;
+
+public class User : Entity<long>, IAggregateRoot
 {
-    public long Id { get; set; }
-    public string UserName { get; set; } = default!;
-    public string DisplayName { get; set; } = default!;
+    public EmailAddress Email { get; private set; }
+    public string Password { get; private set; }
+    public string DisplayName { get; private set; }
+
+    protected User() { } // For EF
+
+    private User(EmailAddress email, string password, string displayName)
+    {
+        Email = email;
+        Password = password;
+        DisplayName = displayName;
+    }
+
+    public void SetId(long id)
+    {
+        if (Id != default)
+        {
+            throw new InvalidOperationException("Id is already set");
+        }
+
+        Id = id;
+    }
+
+    public static User Create(EmailAddress email, string password, string displayName)
+    {
+        // You can validate domain rules here (e.g. unique email if using domain service)
+        return new User(email, password, displayName);
+    }
 }
