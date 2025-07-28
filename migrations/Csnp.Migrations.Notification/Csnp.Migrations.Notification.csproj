@@ -1,9 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj" />
     <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj" />
     <ProjectReference Include="..\..\shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure.Persistence.Shared\Csnp.Notification.Infrastructure.Persistence.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

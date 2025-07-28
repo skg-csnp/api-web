@@ -3,12 +3,12 @@ setlocal enabledelayedexpansion
 
 :: Root solution and project settings
 set ROOT_DIR=%cd%
-set SHARED_PROJECT_DIR=%ROOT_DIR%\src\Credential\Csnp.Credential.Infrastructure.Persistence.Shared
-set SHARED_PROJECT_NAME=Csnp.Credential.Infrastructure.Persistence.Shared
-set INFRA_PROJECT_DIR=%ROOT_DIR%\src\Credential\Csnp.Credential.Infrastructure
-set INFRA_PROJECT_NAME=Csnp.Credential.Infrastructure
-set MIGRATIONS_PROJECT_DIR=%ROOT_DIR%\migrations\Csnp.Migrations.Credential
-set MIGRATIONS_PROJECT_NAME=Csnp.Migrations.Credential
+set SHARED_PROJECT_DIR=%ROOT_DIR%\src\Notification\Csnp.Notification.Infrastructure.Persistence.Shared
+set SHARED_PROJECT_NAME=Csnp.Notification.Infrastructure.Persistence.Shared
+set INFRA_PROJECT_DIR=%ROOT_DIR%\src\Notification\Csnp.Notification.Infrastructure
+set INFRA_PROJECT_NAME=Csnp.Notification.Infrastructure
+set MIGRATIONS_PROJECT_DIR=%ROOT_DIR%\migrations\Csnp.Migrations.Notification
+set MIGRATIONS_PROJECT_NAME=Csnp.Migrations.Notification
 set SLN_NAME=Csnp.sln
 
 echo ----------------------------------------
