@@ -6,7 +6,7 @@
     <ProjectReference Include="..\..\..\shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\shared\Csnp.Common\Csnp.Common.csproj" />
     <ProjectReference Include="..\..\..\shared\Csnp.EventBus\Csnp.EventBus.csproj" />
-    <ProjectReference Include="..\Csnp.Notification.Infrastructure.Persistence.Shared\Csnp.Notification.Infrastructure.Persistence.Shared.csproj" />
+    <ProjectReference Include="..\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

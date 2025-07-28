@@ -25,7 +25,7 @@ namespace Csnp.Migrations.Credential.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.Shared.RoleEntity", b =>
+            modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.RoleEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +55,7 @@ namespace Csnp.Migrations.Credential.Migrations
                     b.ToTable("Roles", "credential");
                 });
 
-            modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", b =>
+            modelBuilder.Entity("Csnp.Credential.Infrastructure.Persistence.UserEntity", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -233,7 +233,7 @@ namespace Csnp.Migrations.Credential.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.RoleEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,7 +242,7 @@ namespace Csnp.Migrations.Credential.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
                 {
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -251,7 +251,7 @@ namespace Csnp.Migrations.Credential.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -260,13 +260,13 @@ namespace Csnp.Migrations.Credential.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
                 {
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.RoleEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -275,7 +275,7 @@ namespace Csnp.Migrations.Credential.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
-                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.Shared.UserEntity", null)
+                    b.HasOne("Csnp.Credential.Infrastructure.Persistence.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

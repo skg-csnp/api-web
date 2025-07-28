@@ -63,11 +63,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Tests.Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Tests.Unit", "tests\Csnp.Notification.Tests.Unit\Csnp.Notification.Tests.Unit.csproj", "{25DFD91A-E4E8-4C90-99D3-F43B1D56B1ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Credential.Infrastructure.Persistence.Shared", "src\Credential\Csnp.Credential.Infrastructure.Persistence.Shared\Csnp.Credential.Infrastructure.Persistence.Shared.csproj", "{9BFDFC5F-5F03-4E21-AA35-A612984DAE97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Credential.Infrastructure.Persistence", "src\Credential\Csnp.Credential.Infrastructure.Persistence\Csnp.Credential.Infrastructure.Persistence.csproj", "{9BFDFC5F-5F03-4E21-AA35-A612984DAE97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Presentation.Common", "shared\Csnp.Presentation.Common\Csnp.Presentation.Common.csproj", "{D927FF9F-9BB5-4F25-9EA6-88515A80706C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Infrastructure.Persistence.Shared", "src\Notification\Csnp.Notification.Infrastructure.Persistence.Shared\Csnp.Notification.Infrastructure.Persistence.Shared.csproj", "{79AA717B-5898-486D-9852-19435BF7EAB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Infrastructure.Persistence", "src\Notification\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj", "{79AA717B-5898-486D-9852-19435BF7EAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -425,5 +425,8 @@ Global
 		{9BFDFC5F-5F03-4E21-AA35-A612984DAE97} = {AE519539-68DF-ADE8-2C89-95EEF9B075DC}
 		{D927FF9F-9BB5-4F25-9EA6-88515A80706C} = {4F52FD11-658E-A102-6CD3-7D7C16FFA15B}
 		{79AA717B-5898-486D-9852-19435BF7EAB2} = {70BAA7F9-7914-E584-5739-8B02C132DCC7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABF0CD84-A307-4FC6-B41A-9597606952E1}
 	EndGlobalSection
 EndGlobal

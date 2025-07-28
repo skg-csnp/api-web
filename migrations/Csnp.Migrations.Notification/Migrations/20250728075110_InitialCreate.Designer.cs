@@ -26,7 +26,7 @@ namespace Csnp.Migrations.Notification.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Csnp.Notification.Infrastructure.Persistence.Shared.EmailLogEntity", b =>
+            modelBuilder.Entity("Csnp.Notification.Infrastructure.Persistence.EmailLogEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

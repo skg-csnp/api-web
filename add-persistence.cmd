@@ -3,8 +3,8 @@ setlocal enabledelayedexpansion
 
 :: Root solution and project settings
 set ROOT_DIR=%cd%
-set SHARED_PROJECT_DIR=%ROOT_DIR%\src\Notification\Csnp.Notification.Infrastructure.Persistence.Shared
-set SHARED_PROJECT_NAME=Csnp.Notification.Infrastructure.Persistence.Shared
+set SHARED_PROJECT_DIR=%ROOT_DIR%\src\Notification\Csnp.Notification.Infrastructure.Persistence
+set SHARED_PROJECT_NAME=Csnp.Notification.Infrastructure.Persistence
 set INFRA_PROJECT_DIR=%ROOT_DIR%\src\Notification\Csnp.Notification.Infrastructure
 set INFRA_PROJECT_NAME=Csnp.Notification.Infrastructure
 set MIGRATIONS_PROJECT_DIR=%ROOT_DIR%\migrations\Csnp.Migrations.Notification
