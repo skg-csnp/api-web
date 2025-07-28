@@ -31,4 +31,21 @@ public class UserReadRepository : IUserReadRepository
         var entity = await _userManager.FindByNameAsync(userName);
         return entity?.ToDomain();
     }
+
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        var entity = await _userManager.FindByEmailAsync(email);
+        return entity?.ToDomain();
+    }
+
+    public async Task<bool> CheckPasswordAsync(User user, string password)
+    {
+        var entity = await _userManager.FindByIdAsync(user.Id.ToString());
+        if (entity is null)
+        {
+            return false;
+        }
+
+        return await _userManager.CheckPasswordAsync(entity, password);
+    }
 }
