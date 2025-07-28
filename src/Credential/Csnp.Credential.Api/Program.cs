@@ -1,3 +1,4 @@
+using Csnp.Common.Security;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
 
@@ -17,6 +18,9 @@ public class Program
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+        builder.Services.AddSingleton<IJwtService, JwtService>();
 
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddApplication();

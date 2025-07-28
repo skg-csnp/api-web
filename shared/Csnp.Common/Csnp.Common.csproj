@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.7" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj" />
     <ProjectReference Include="..\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj" />
   </ItemGroup>
