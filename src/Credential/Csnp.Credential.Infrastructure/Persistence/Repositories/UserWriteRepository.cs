@@ -1,4 +1,5 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Events;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
 using IdGen;
@@ -10,11 +11,13 @@ public class UserWriteRepository : IUserWriteRepository
 {
     private readonly UserManager<UserEntity> _userManager;
     private readonly IdGenerator _idGen;
+    private readonly IDomainEventDispatcher _dispatcher;
 
-    public UserWriteRepository(UserManager<UserEntity> userManager, IdGenerator idGen)
+    public UserWriteRepository(UserManager<UserEntity> userManager, IdGenerator idGen, IDomainEventDispatcher dispatcher)
     {
         _userManager = userManager;
         _idGen = idGen;
+        _dispatcher = dispatcher;
     }
 
     public async Task AddAsync(User user, CancellationToken cancellationToken)
@@ -30,5 +33,8 @@ public class UserWriteRepository : IUserWriteRepository
         }
 
         user.SetId(entity.Id);
+
+        await _dispatcher.DispatchAsync(user.DomainEvents, cancellationToken);
+        user.ClearDomainEvents();
     }
 }

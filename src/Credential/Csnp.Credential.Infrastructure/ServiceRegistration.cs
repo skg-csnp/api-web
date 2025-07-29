@@ -1,8 +1,11 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Application.Events;
+using Csnp.Credential.Application.Events.Users;
+using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
 using Csnp.Credential.Infrastructure.Persistence;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
+using Csnp.SeedWork.Domain.Events;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -48,6 +51,7 @@ public static class ServiceRegistration
         });
 
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+        services.AddScoped<IDomainHandler<UserCreatedDomainEvent>, UserCreatedHandler>();
 
         return services;
     }

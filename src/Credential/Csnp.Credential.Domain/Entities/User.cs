@@ -1,3 +1,4 @@
+using Csnp.Credential.Domain.Events.Users;
 using Csnp.SeedWork.Domain;
 using Csnp.SharedKernel.Domain.ValueObjects;
 
@@ -31,6 +32,15 @@ public class User : Entity<long>, IAggregateRoot
     public static User Create(EmailAddress email, string password, string displayName)
     {
         // You can validate domain rules here (e.g. unique email if using domain service)
-        return new User(email, password, displayName);
+        var user = new User(email, password, displayName);
+        user.AddDomainEvent(new UserCreatedDomainEvent(user.Id, email.Value));
+        return user;
+    }
+
+    public static User Rehydrate(long id, EmailAddress email, string password, string displayName)
+    {
+        var user = new User(email, password, displayName);
+        user.SetId(id);
+        return user;
     }
 }

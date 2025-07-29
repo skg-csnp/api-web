@@ -29,14 +29,11 @@ public static class UserEntityExtensions
     /// <returns>The corresponding <see cref="User"/>.</returns>
     public static User ToDomain(this UserEntity entity)
     {
-        var user = User.Create(
+        return User.Rehydrate(
+            entity.Id,
             EmailAddress.Create(entity.Email!),
             entity.PasswordHash!,
             entity.DisplayName ?? ""
         );
-
-        user.SetId(entity.Id);
-
-        return user;
     }
 }
