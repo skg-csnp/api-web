@@ -2,6 +2,7 @@ using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
 using Csnp.SeedWork.Application.Abstractions.Events;
+using Csnp.SeedWork.Application.Events;
 using IdGen;
 using Microsoft.AspNetCore.Identity;
 
@@ -34,7 +35,6 @@ public class UserWriteRepository : IUserWriteRepository
 
         user.SetId(entity.Id);
 
-        await _dispatcher.DispatchAsync(user.DomainEvents, cancellationToken);
-        user.ClearDomainEvents();
+        await DomainEventHelper.DispatchAndClearAsync(user, _dispatcher, cancellationToken);
     }
 }

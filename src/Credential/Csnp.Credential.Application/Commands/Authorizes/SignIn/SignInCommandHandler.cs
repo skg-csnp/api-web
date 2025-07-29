@@ -1,6 +1,7 @@
 using Csnp.Common.Security;
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.SeedWork.Application.Abstractions.Events;
+using Csnp.SeedWork.Application.Events;
 using MediatR;
 
 namespace Csnp.Credential.Application.Commands.Authorizes.SignIn;
@@ -33,8 +34,7 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, SignInRespons
         }
 
         user.SignIn();
-        await _dispatcher.DispatchAsync(user.DomainEvents, cancellationToken);
-        user.ClearDomainEvents();
+        await DomainEventHelper.DispatchAndClearAsync(user, _dispatcher, cancellationToken);
 
         string accessToken = _jwtService.GenerateToken(user.Id, user.DisplayName);
         string refreshToken = _jwtService.GenerateRefreshToken();
