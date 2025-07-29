@@ -19,6 +19,11 @@ public class User : Entity<long>, IAggregateRoot
         DisplayName = displayName;
     }
 
+    public void SignIn()
+    {
+        AddDomainEvent(new UserSignedInDomainEvent(Id, DateTime.UtcNow));
+    }
+
     public void SetId(long id)
     {
         if (Id != default)

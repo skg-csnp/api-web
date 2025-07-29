@@ -52,6 +52,7 @@ public static class ServiceRegistration
 
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IDomainHandler<UserCreatedDomainEvent>, UserCreatedHandler>();
+        services.AddScoped<IDomainHandler<UserSignedInDomainEvent>, UserSignedInHandler>();
 
         return services;
     }
