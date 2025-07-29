@@ -11,7 +11,7 @@ public class CredentialDbContext : IdentityDbContext<UserEntity, RoleEntity, lon
     {
         base.OnModelCreating(builder);
 
-        builder.ApplyConfigurationsFromAssembly(typeof(CredentialDbContext).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(UserEntity).Assembly);
     }
 
     #endregion
