@@ -1,4 +1,6 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Events;
+using Csnp.Credential.Infrastructure.Events;
 using Csnp.Credential.Infrastructure.Persistence;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
 using IdGen;
@@ -44,6 +46,8 @@ public static class ServiceRegistration
             int workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out int id) ? id : 0;
             return new IdGenerator(workerId, options);
         });
+
+        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
         return services;
     }
