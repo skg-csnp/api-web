@@ -1,6 +1,6 @@
 using Csnp.Common.Security;
 using Csnp.Credential.Application.Abstractions.Persistence;
-using Csnp.Credential.Application.Events;
+using Csnp.SeedWork.Application.Abstractions.Events;
 using MediatR;
 
 namespace Csnp.Credential.Application.Commands.Authorizes.SignIn;

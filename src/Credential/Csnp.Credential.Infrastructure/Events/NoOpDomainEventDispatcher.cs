@@ -1,4 +1,4 @@
-using Csnp.Credential.Application.Events;
+using Csnp.SeedWork.Application.Abstractions.Events;
 using Csnp.SeedWork.Domain.Events;
 
 namespace Csnp.Credential.Infrastructure.Events;

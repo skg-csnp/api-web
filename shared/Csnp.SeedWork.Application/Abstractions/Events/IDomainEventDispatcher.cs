@@ -1,6 +1,6 @@
 using Csnp.SeedWork.Domain.Events;
 
-namespace Csnp.Credential.Application.Events;
+namespace Csnp.SeedWork.Application.Abstractions.Events;
 
 public interface IDomainEventDispatcher
 {

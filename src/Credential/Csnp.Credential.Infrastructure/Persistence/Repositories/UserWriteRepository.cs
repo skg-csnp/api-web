@@ -1,7 +1,7 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
-using Csnp.Credential.Application.Events;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
+using Csnp.SeedWork.Application.Abstractions.Events;
 using IdGen;
 using Microsoft.AspNetCore.Identity;
 
