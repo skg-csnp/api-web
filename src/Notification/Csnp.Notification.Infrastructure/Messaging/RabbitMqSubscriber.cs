@@ -15,7 +15,7 @@ namespace Csnp.Notification.Infrastructure.Messaging;
 /// <summary>
 /// Background service to consume RabbitMQ messages and dispatch them to the appropriate integration handler.
 /// </summary>
-public sealed class RabbitMqConsumer : BackgroundService
+public sealed class RabbitMqSubscriber : BackgroundService
 {
     #region -- Overrides --
 
@@ -110,15 +110,15 @@ public sealed class RabbitMqConsumer : BackgroundService
     #region -- Methods --
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RabbitMqConsumer"/> class.
+    /// Initializes a new instance of the <see cref="RabbitMqSubscriber"/> class.
     /// </summary>
     /// <param name="serviceProvider">Service provider to resolve scoped services.</param>
     /// <param name="options">RabbitMQ settings injected via <see cref="IOptions{TOptions}"/>.</param>
     /// <param name="logger">Logger instance for diagnostic messages.</param>
-    public RabbitMqConsumer(
+    public RabbitMqSubscriber(
         IServiceProvider serviceProvider,
         IOptions<RabbitMqSettings> options,
-        ILogger<RabbitMqConsumer> logger)
+        ILogger<RabbitMqSubscriber> logger)
     {
         _serviceProvider = serviceProvider;
         _settings = options.Value;
@@ -179,7 +179,7 @@ public sealed class RabbitMqConsumer : BackgroundService
     /// <summary>
     /// Logger instance for logging messages and errors.
     /// </summary>
-    private readonly ILogger<RabbitMqConsumer> _logger;
+    private readonly ILogger<RabbitMqSubscriber> _logger;
 
     /// <summary>
     /// Represents the RabbitMQ connection.

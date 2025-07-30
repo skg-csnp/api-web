@@ -10,7 +10,7 @@ public static class ServiceRegistration
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddScoped<IEmailService, EmailService>();
-        services.AddHostedService<RabbitMqConsumer>();
+        services.AddHostedService<RabbitMqSubscriber>();
         return services;
     }
 }
