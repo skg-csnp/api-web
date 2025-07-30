@@ -60,7 +60,7 @@ public sealed class RabbitMqSubscriber<TEvent> : BackgroundService
             cancellationToken: cancellationToken);
 
         var consumer = new AsyncEventingBasicConsumer(_channel);
-        consumer.ReceivedAsync += _handleReceivedMessageAsync;
+        consumer.ReceivedAsync += OnMessageReceivedAsync;
 
         await _channel.BasicConsumeAsync(
             queue: _metadata.QueueName,
@@ -132,7 +132,7 @@ public sealed class RabbitMqSubscriber<TEvent> : BackgroundService
     /// <param name="sender">The sender of the event.</param>
     /// <param name="ea">The event arguments containing message data.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    private async Task _handleReceivedMessageAsync(object sender, BasicDeliverEventArgs ea)
+    private async Task OnMessageReceivedAsync(object sender, BasicDeliverEventArgs ea)
     {
         try
         {

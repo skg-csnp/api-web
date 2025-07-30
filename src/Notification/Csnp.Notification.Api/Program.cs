@@ -1,5 +1,4 @@
 using Csnp.EventBus.RabbitMQ;
-using Csnp.Notification.Application;
 using Csnp.Notification.Infrastructure;
 
 namespace Csnp.Notification.Api;
@@ -17,8 +16,8 @@ public class Program
         builder.Services.AddOpenApi();
 
         builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"));
-        builder.Services.AddInfrastructure();
         builder.Services.AddApplication();
+        builder.Services.AddInfrastructure();
 
         WebApplication app = builder.Build();
 
