@@ -2,9 +2,11 @@ using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Application.Events.Users;
 using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
+using Csnp.Credential.Infrastructure.Messaging;
 using Csnp.Credential.Infrastructure.Persistence;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
 using Csnp.SeedWork.Application.Abstractions.Events;
+using Csnp.SeedWork.Application.Messaging;
 using Csnp.SeedWork.Domain.Events;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +55,8 @@ public static class ServiceRegistration
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IDomainHandler<UserCreatedDomainEvent>, UserCreatedHandler>();
         services.AddScoped<IDomainHandler<UserSignedInDomainEvent>, UserSignedInHandler>();
+
+        services.AddSingleton<IIntegrationEventPublisher, RabbitMqPublisher>();
 
         return services;
     }

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "All",
+    "Projects": [
+      {
+        "Path": "src\\Credential\\Csnp.Credential.Api\\Csnp.Credential.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\Notification\\Csnp.Notification.Api\\Csnp.Notification.Api.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

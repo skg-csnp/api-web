@@ -1,4 +1,6 @@
 using Csnp.Credential.Application.Commands.Users.CreateUser;
+using Csnp.Credential.Application.Dispatcher;
+using Csnp.SeedWork.Application.Abstractions.Events;
 using Csnp.SeedWork.Application.Behaviors;
 using FluentValidation;
 using MediatR;
@@ -18,6 +20,8 @@ public static class ServiceRegistration
 
         // Register pipeline validation behavior
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
         return services;
     }

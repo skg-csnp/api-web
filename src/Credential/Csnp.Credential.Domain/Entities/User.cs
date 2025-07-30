@@ -39,6 +39,7 @@ public class User : Entity<long>, IAggregateRoot
         // You can validate domain rules here (e.g. unique email if using domain service)
         var user = new User(email, password, displayName);
         user.AddDomainEvent(new UserCreatedDomainEvent(user.Id, email.Value));
+        user.AddDomainEvent(new UserSignedUpDomainEvent(user));
         return user;
     }
 
