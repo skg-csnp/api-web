@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Migrations.Notification", "migrations\Csnp.Migrations.Notification\Csnp.Migrations.Notification.csproj", "{EA783854-6A3F-4AED-B9AD-F479011E55EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{4F52FD11-658E-A102-6CD3-7D7C16FFA15B}"
+	ProjectSection(SolutionItems) = preProject
+		shared\README.md = shared\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Common", "shared\Csnp.Common\Csnp.Common.csproj", "{4B830916-4C15-4D1F-854C-32EE35AF8CF1}"
 EndProject
@@ -70,6 +73,22 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Infrastructure.Persistence", "src\Notification\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj", "{79AA717B-5898-486D-9852-19435BF7EAB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Tests.Unit", "tests\Csnp.SharedKernel.Tests.Unit\Csnp.SharedKernel.Tests.Unit.csproj", "{6A809F70-2149-0791-9D91-A7E21E69B2DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\architecture.md = docs\architecture.md
+		docs\cqrs-pattern.md = docs\cqrs-pattern.md
+		docs\domain-layer-comparison.md = docs\domain-layer-comparison.md
+		docs\domain-structure.md = docs\domain-structure.md
+		docs\dotnet-format-guide.md = docs\dotnet-format-guide.md
+		docs\event-driven-design.md = docs\event-driven-design.md
+		docs\restful-api-guideline.md = docs\restful-api-guideline.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
