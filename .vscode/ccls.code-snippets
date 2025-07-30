@@ -1,0 +1,37 @@
+{
+  "CSNP Class Template": {
+    "prefix": "ccls",
+    "body": [
+      "namespace ${1:Csnp.MyNamespace}",
+      "{",
+      "    public class ${2:MyClass}",
+      "    {",
+      "        #region -- Implements --",
+      "",
+      "        #endregion",
+      "",
+      "        #region -- Overrides --",
+      "",
+      "        #endregion",
+      "",
+      "        #region -- Methods --",
+      "",
+      "        #endregion",
+      "",
+      "        #region -- Properties --",
+      "",
+      "        #endregion",
+      "",
+      "        #region -- Fields --",
+      "",
+      "        #endregion",
+      "",
+      "        #region -- Constants --",
+      "",
+      "        #endregion",
+      "    }",
+      "}"
+    ],
+    "description": "Standard CSNP class structure with regions"
+  }
+}

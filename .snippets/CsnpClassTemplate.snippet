@@ -1,0 +1,57 @@
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>CSNP Class Template</Title>
+    <Shortcut>ccls</Shortcut>
+    <Description>Standard CSNP class structure with regions</Description>
+    <Author>CSNP</Author>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>className</ID>
+        <ToolTip>Class name</ToolTip>
+        <Default>MyClass</Default>
+      </Literal>
+      <Literal>
+        <ID>namespace</ID>
+        <ToolTip>Namespace</ToolTip>
+        <Default>Csnp.MyNamespace</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="csharp"><![CDATA[
+namespace $namespace$
+{
+    public class $className$
+    {
+        #region -- Implements --
+
+        #endregion
+
+        #region -- Overrides --
+
+        #endregion
+
+        #region -- Methods --
+
+        #endregion
+
+        #region -- Properties --
+
+        #endregion
+
+        #region -- Fields --
+
+        #endregion
+
+        #region -- Constants --
+
+        #endregion
+    }
+}
+]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
