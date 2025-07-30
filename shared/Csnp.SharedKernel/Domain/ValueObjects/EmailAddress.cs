@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Csnp.SharedKernel.Domain.Exceptions;
 
 namespace Csnp.SharedKernel.Domain.ValueObjects;
 
@@ -21,7 +22,7 @@ public sealed class EmailAddress : ValueObject
         bool isValid = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         if (!isValid)
         {
-            throw new ArgumentException("Email format is invalid");
+            throw new InvalidEmailException("Email format is invalid");
         }
 
         return new EmailAddress(email.Trim().ToUpperInvariant());
