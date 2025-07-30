@@ -1,4 +1,4 @@
-using Csnp.SeedWork.Application.Messaging;
+using Csnp.EventBus.Events;
 
 namespace Csnp.Credential.Application.Events.Users;
 

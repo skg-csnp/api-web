@@ -1,5 +1,6 @@
 using System.Text;
-using Csnp.SeedWork.Application.Messaging;
+using Csnp.EventBus.Abstractions;
+using Csnp.EventBus.Events;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;

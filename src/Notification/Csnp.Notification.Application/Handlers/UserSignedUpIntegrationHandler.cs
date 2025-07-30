@@ -1,6 +1,6 @@
+using Csnp.EventBus.Abstractions;
 using Csnp.Notification.Application.Abstractions.Services;
 using Csnp.Notification.Application.Events;
-using Csnp.SeedWork.Domain.Events;
 using Microsoft.Extensions.Logging;
 
 namespace Csnp.Notification.Application.Handlers;

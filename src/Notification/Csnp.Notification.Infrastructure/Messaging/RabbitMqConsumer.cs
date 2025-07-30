@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
+using Csnp.EventBus.Abstractions;
 using Csnp.Notification.Application.Events;
-using Csnp.SeedWork.Domain.Events;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
