@@ -27,7 +27,7 @@ public class EmailAddressTests
     {
         // Act & Assert
         ArgumentException ex = Assert.Throws<ArgumentException>(() => EmailAddress.Create(input!));
-        Assert.Equal("Email is required", ex.Message);
+        Assert.Equal("Email is required (Parameter 'email')", ex.Message);
     }
 
     [Theory]
