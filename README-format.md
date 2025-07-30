@@ -1,14 +1,14 @@
-# Using dotnet-format to Format .NET Code
+# Using `dotnet-format` to Format .NET Code
 
-This guide explains how to install and use the `dotnet-format` tool to format your .NET projects consistently.
+This guide explains how to install and use the `dotnet-format` tool to apply consistent code style rules across your .NET projects.
 
 ## Prerequisites
 
-- .NET SDK installed (version 6 or later recommended)
+- .NET SDK 6.0 or later installed
 
 ## Installation
 
-To install `dotnet-format` as a global tool, run:
+Install `dotnet-format` as a global tool:
 
 ```bash
 dotnet tool install -g dotnet-format
@@ -20,7 +20,7 @@ After installation, you can use the `dotnet format` command from any directory.
 
 ### Format the Entire Solution
 
-To format all projects in the solution `Csnp.sln`:
+To format all projects in a solution file (e.g., `Csnp.sln`):
 
 ```bash
 dotnet format Csnp.sln
@@ -28,29 +28,43 @@ dotnet format Csnp.sln
 
 ### Format with Specific Severity
 
-To apply formatting only to issues with `warn` severity (and above):
+Apply formatting only to issues with `warn` severity or higher:
 
 ```bash
 dotnet format --severity warn
 ```
 
-This is useful to avoid formatting changes for informational or hidden diagnostics.
+This avoids formatting changes for informational (`info`) or hidden diagnostics.
 
 ## Notes
 
-- `dotnet-format` respects `.editorconfig` settings if available.
-- You can run the tool in CI pipelines to enforce consistent code style.
-- If you want to check formatting without making changes, add the `--verify-no-changes` flag.
+- `dotnet-format` respects your `.editorconfig` settings.
+- Ideal for use in CI pipelines to enforce style and formatting rules.
+- To check for formatting issues without applying changes:
 
-## Example CI Usage
+```bash
+dotnet format --verify-no-changes
+```
+
+## Example CI Command
 
 ```bash
 dotnet format --verify-no-changes --severity warn Csnp.sln
 ```
 
-This command will fail if any formatting issues are found with severity `warn` or higher.
+This command will fail the build if formatting issues of severity `warn` or higher are detected.
+
+## Additional CI Maintenance Steps (Optional)
+
+Use the following commands when needed to ensure a clean and consistent environment:
+
+```bash
+dotnet clean
+dotnet build
+dotnet format --verbosity detailed
+```
 
 ---
 
-For more information, visit the official documentation: [https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
-
+📚 **Official documentation:**\
+[https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
