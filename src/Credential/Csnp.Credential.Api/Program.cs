@@ -2,6 +2,7 @@ using Csnp.Common.Security;
 using Csnp.Credential.Api.Middlewares;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
+using Csnp.EventBus.RabbitMQ;
 
 namespace Csnp.Credential.Api;
 
@@ -23,6 +24,7 @@ public class Program
         builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
         builder.Services.AddSingleton<IJwtService, JwtService>();
 
+        builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"));
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddApplication();
 
