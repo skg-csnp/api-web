@@ -1,8 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using Csnp.EventBus.Abstractions;
-using Csnp.EventBus.RabbitMQ;
-using Csnp.Notification.Application.Events;
+using Csnp.EventBus.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -10,12 +9,14 @@ using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Csnp.Notification.Infrastructure.Messaging;
+namespace Csnp.EventBus.RabbitMQ;
 
 /// <summary>
-/// Background service to consume RabbitMQ messages and dispatch them to the appropriate integration handler.
+/// Generic RabbitMQ subscriber that listens to a specific integration event and dispatches it to the corresponding handler.
 /// </summary>
-public sealed class RabbitMqSubscriber : BackgroundService
+/// <typeparam name="TEvent">Type of the integration event to handle.</typeparam>
+public sealed class RabbitMqSubscriber<TEvent> : BackgroundService
+    where TEvent : IntegrationEvent
 {
     #region -- Overrides --
 
@@ -39,33 +40,30 @@ public sealed class RabbitMqSubscriber : BackgroundService
         _connection = await factory.CreateConnectionAsync(cancellationToken);
         _channel = await _connection.CreateChannelAsync(cancellationToken: cancellationToken);
 
-        const string exchangeName = "user.signup";
-        const string queueName = "user-signed-up";
-
         await _channel.ExchangeDeclareAsync(
-            exchange: exchangeName,
+            exchange: _metadata.ExchangeName,
             type: ExchangeType.Fanout,
             durable: true,
             cancellationToken: cancellationToken);
 
         await _channel.QueueDeclareAsync(
-            queue: queueName,
+            queue: _metadata.QueueName,
             durable: true,
             exclusive: false,
             autoDelete: false,
             cancellationToken: cancellationToken);
 
         await _channel.QueueBindAsync(
-            queue: queueName,
-            exchange: exchangeName,
+            queue: _metadata.QueueName,
+            exchange: _metadata.ExchangeName,
             routingKey: string.Empty,
             cancellationToken: cancellationToken);
 
         var consumer = new AsyncEventingBasicConsumer(_channel);
-        consumer.ReceivedAsync += OnMessageReceivedAsync;
+        consumer.ReceivedAsync += _handleReceivedMessageAsync;
 
         await _channel.BasicConsumeAsync(
-            queue: queueName,
+            queue: _metadata.QueueName,
             autoAck: false,
             consumer: consumer,
             cancellationToken: cancellationToken);
@@ -110,43 +108,45 @@ public sealed class RabbitMqSubscriber : BackgroundService
     #region -- Methods --
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RabbitMqSubscriber"/> class.
+    /// Initializes a new instance of the <see cref="RabbitMqSubscriber{TEvent}"/> class.
     /// </summary>
     /// <param name="serviceProvider">Service provider to resolve scoped services.</param>
     /// <param name="options">RabbitMQ settings injected via <see cref="IOptions{TOptions}"/>.</param>
+    /// <param name="metadata">Queue and exchange metadata for the integration event.</param>
     /// <param name="logger">Logger instance for diagnostic messages.</param>
     public RabbitMqSubscriber(
         IServiceProvider serviceProvider,
         IOptions<RabbitMqSettings> options,
-        ILogger<RabbitMqSubscriber> logger)
+        IIntegrationEventMetadata<TEvent> metadata,
+        ILogger<RabbitMqSubscriber<TEvent>> logger)
     {
         _serviceProvider = serviceProvider;
         _settings = options.Value;
+        _metadata = metadata;
         _logger = logger;
     }
 
     /// <summary>
-    /// Handles the received RabbitMQ message.
+    /// Handles the received RabbitMQ message for the subscribed integration event.
     /// </summary>
     /// <param name="sender">The sender of the event.</param>
     /// <param name="ea">The event arguments containing message data.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    private async Task OnMessageReceivedAsync(object sender, BasicDeliverEventArgs ea)
+    private async Task _handleReceivedMessageAsync(object sender, BasicDeliverEventArgs ea)
     {
         try
         {
             byte[] body = ea.Body.ToArray();
             string message = Encoding.UTF8.GetString(body);
 
-            UserSignedUpIntegrationEvent? integrationEvent =
-                JsonSerializer.Deserialize<UserSignedUpIntegrationEvent>(message);
+            TEvent? integrationEvent = JsonSerializer.Deserialize<TEvent>(message);
 
             if (integrationEvent is not null)
             {
                 using IServiceScope scope = _serviceProvider.CreateScope();
 
-                IIntegrationHandler<UserSignedUpIntegrationEvent> handler =
-                    scope.ServiceProvider.GetRequiredService<IIntegrationHandler<UserSignedUpIntegrationEvent>>();
+                IIntegrationHandler<TEvent> handler =
+                    scope.ServiceProvider.GetRequiredService<IIntegrationHandler<TEvent>>();
 
                 await handler.HandleAsync(integrationEvent, _cancellationToken);
             }
@@ -158,7 +158,7 @@ public sealed class RabbitMqSubscriber : BackgroundService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error processing integration event.");
+            _logger.LogError(ex, "Error processing integration event of type {EventType}", typeof(TEvent).Name);
         }
     }
 
@@ -177,9 +177,14 @@ public sealed class RabbitMqSubscriber : BackgroundService
     private readonly RabbitMqSettings _settings;
 
     /// <summary>
+    /// Metadata that defines the queue and exchange names for the event.
+    /// </summary>
+    private readonly IIntegrationEventMetadata<TEvent> _metadata;
+
+    /// <summary>
     /// Logger instance for logging messages and errors.
     /// </summary>
-    private readonly ILogger<RabbitMqSubscriber> _logger;
+    private readonly ILogger<RabbitMqSubscriber<TEvent>> _logger;
 
     /// <summary>
     /// Represents the RabbitMQ connection.
