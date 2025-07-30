@@ -1,3 +1,4 @@
+using Csnp.EventBus.RabbitMQ;
 using Csnp.Notification.Application;
 using Csnp.Notification.Infrastructure;
 
@@ -15,6 +16,7 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
+        builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"));
         builder.Services.AddInfrastructure();
         builder.Services.AddApplication();
 
