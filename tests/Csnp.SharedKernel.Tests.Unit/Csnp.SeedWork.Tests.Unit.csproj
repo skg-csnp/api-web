@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shared\Csnp.SharedKernel\Csnp.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\shared\Csnp.SeedWork\Csnp.SeedWork.csproj" />
   </ItemGroup>
 
 </Project>

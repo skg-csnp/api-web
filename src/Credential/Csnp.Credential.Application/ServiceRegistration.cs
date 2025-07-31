@@ -1,7 +1,7 @@
 using Csnp.Credential.Application.Commands.Users.CreateUser;
 using Csnp.Credential.Application.Dispatcher;
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SeedWork.Application.Behaviors;
+using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Application.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

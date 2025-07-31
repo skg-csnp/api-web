@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Csnp.SeedWork.Application.Behaviors;
+namespace Csnp.SharedKernel.Application.Behaviors;
 
 /// <summary>
 /// Represents a pipeline behavior that uses FluentValidation to validate requests

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Csnp.SeedWork\Csnp.SeedWork.csproj" />
+  </ItemGroup>
+
 </Project>

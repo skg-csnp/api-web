@@ -1,4 +1,4 @@
-namespace Csnp.SeedWork.Domain.Events;
+namespace Csnp.SharedKernel.Domain.Events;
 
 /// <summary>
 /// Represents an entity that can produce domain events.

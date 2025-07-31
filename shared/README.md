@@ -1,74 +1,119 @@
 # Shared Projects
 
-This document outlines the shared projects used across all bounded contexts within the CSNP Platform. These are organized following Domain-Driven Design (DDD) principles, distinguishing between SeedWork, Shared Kernel, and cross-cutting concerns.
+This document outlines the shared projects used across all bounded contexts within the CSNP Platform. These follow Domain-Driven Design (DDD) principles, distinguishing between SeedWork, Shared Kernel, and cross-cutting concerns.
 
 ---
 
 ## 🧱 Csnp.SeedWork
 
-These projects provide fundamental DDD abstractions and technical scaffolding:
+These projects provide clean, dependency-free DDD abstractions and technical scaffolding:
 
 ### ✅ Csnp.SeedWork.Domain
-- Core DDD building blocks: `Entity`, `ValueObject`, `AggregateRoot`, `IDomainEvent`, etc.
-- Used by all domain layers across bounded contexts.
+
+* Core DDD building blocks: `Entity`, `ValueObject`, `AggregateRoot`, `IDomainEvent`, etc.
+* Used by all domain layers across bounded contexts.
+* No external dependencies.
 
 ### ✅ Csnp.SeedWork.Application
-- Application-layer support: `ICommand`, `IQuery`, MediatR behaviors, result types.
-- Useful for CQRS-based use cases and pipelines.
+
+* Application-layer contracts and base interfaces:
+
+  * `ICommand`, `IQuery`, `IRequestHandler<T>`, etc.
+* Defines MediatR-based abstractions only (no concrete behaviors).
+* Keeps the layer implementation-agnostic and testable.
 
 ### ✅ Csnp.SeedWork.Infrastructure
-- Infrastructure-related abstractions and utilities.
-- Includes base repositories (EF Core), serialization helpers, caching, etc.
-- Used by infrastructure layers of bounded contexts.
+
+* Infrastructure abstractions like `IRepository<T>`, `IUnitOfWork`, etc.
+* Contains no external references to Entity Framework or any database provider.
+* Allows infrastructure layer to plug in actual implementations.
+
+---
+
+## 🧹 Csnp.SharedKernel
+
+Reusable domain logic and implementations shared across bounded contexts:
+
+### ✅ Csnp.SharedKernel.Domain
+
+* Shared value objects: `EmailAddress`, `Money`, `PhoneNumber`, etc.
+* Domain events reused across services: `UserSignedUpDomainEvent`, etc.
+* May depend on `Csnp.SeedWork.Domain`.
+
+### ✅ Csnp.SharedKernel.Application
+
+* Implementation of shared MediatR pipelines: `ValidationBehavior`, `LoggingBehavior`, etc.
+* FluentValidation integration, base result types, error formatting.
+* Depends on `Csnp.SeedWork.Application`.
+
+### ✅ Csnp.SharedKernel.Infrastructure
+
+* Base EF Core repositories, audit support, integration helpers.
+* Shared database-related implementation logic.
 
 ---
 
 ## ⚙️ Csnp.Common
-- General-purpose utility classes: extensions, constants, helpers.
-- Purely technical (non-domain) and cross-cutting.
+
+* General-purpose technical helpers:
+
+  * String/date extensions, constants, utilities.
+* Non-domain and cross-cutting by nature.
+* No dependency on other layers.
 
 ---
 
 ## 📬 Csnp.EventBus
-- Abstractions for event-driven communication:
-  - `IIntegrationEventPublisher`
-  - `IIntegrationHandler<T>`
-- Used for RabbitMQ/Kafka integration between services.
+
+* Abstractions for event-driven communication between services:
+
+  * `IIntegrationEventPublisher`
+  * `IIntegrationHandler<T>`
+* May include shared serialization settings or messaging contracts.
+* Used for RabbitMQ/Kafka integration.
 
 ---
 
 ## 🌐 Csnp.Presentation.Common
-- Shared components for the presentation (API) layer:
-  - API versioning
-  - Middleware (e.g., error formatting, logging)
-  - FluentValidation response standardization
+
+* Common presentation-layer components:
+
+  * Middleware (logging, exception handling)
+  * API versioning
+  * Standardized error response for validation
+* Targets Web API layer reusability.
 
 ---
 
-## 🧩 Csnp.SharedKernel
-- Reusable domain logic across contexts.
-- Includes value objects like `EmailAddress`, `Money`, `Address`, etc.
-- Considered part of the domain, but shared due to consistency.
+## 📁 Directory Structure
 
----
-
-## 📁 Placement
-All shared projects are located in the `/shared/` directory at the root level:
+All shared libraries are located in the `/shared/` directory at the root level:
 
 ```
 shared/
 ├── Csnp.Common/
 ├── Csnp.EventBus/
 ├── Csnp.Presentation.Common/
-├── Csnp.SeedWork.Domain/
 ├── Csnp.SeedWork.Application/
+├── Csnp.SeedWork.Domain/
 ├── Csnp.SeedWork.Infrastructure/
-└── Csnp.SharedKernel/
+├── Csnp.SharedKernel.Application/
+├── Csnp.SharedKernel.Domain/
+└── Csnp.SharedKernel.Infrastructure/
 ```
 
 ---
 
-## ✅ Guideline
-- Use SeedWork for technical building blocks only.
-- Use SharedKernel sparingly — only for domain concepts shared by multiple bounded contexts.
-- Keep infrastructure logic isolated and abstracted.
+## ✅ Usage Guidelines
+
+| Layer                   | Purpose                                                         | Dependencies |
+| ----------------------- | --------------------------------------------------------------- | ------------ |
+| **SeedWork**            | Pure DDD contracts and abstractions. No external packages.      | ❌ None       |
+| **SharedKernel**        | Shared domain and implementation logic across bounded contexts. | ✅ Allowed    |
+| **Common**              | Technical utilities not tied to DDD.                            | ✅ Allowed    |
+| **EventBus**            | Integration event abstraction for message brokers.              | ✅ Allowed    |
+| **Presentation.Common** | Reusable Web API components like middlewares and formatters.    | ✅ Allowed    |
+
+> 🧼 Keep `Csnp.SeedWork` clean and stable.
+> 🔁 Evolve `Csnp.SharedKernel` carefully when multiple domains need the same concept.
+> 🔌 Never depend on infrastructure implementation from SeedWork.

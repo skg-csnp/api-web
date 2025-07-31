@@ -1,6 +1,6 @@
 using Csnp.Credential.Domain.Events.Users;
-using Csnp.SeedWork.Domain;
-using Csnp.SharedKernel.Domain.ValueObjects;
+using Csnp.SeedWork.Domain.ValueObjects;
+using Csnp.SharedKernel.Domain;
 
 namespace Csnp.Credential.Domain.Entities;
 

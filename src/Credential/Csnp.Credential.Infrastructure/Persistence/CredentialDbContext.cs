@@ -1,6 +1,6 @@
 using Csnp.Credential.Infrastructure.Events;
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Domain.Events;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

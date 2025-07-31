@@ -1,7 +1,7 @@
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SeedWork.Domain;
+using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Domain;
 
-namespace Csnp.SeedWork.Application.Events;
+namespace Csnp.SharedKernel.Application.Events;
 
 /// <summary>
 /// Provides helper methods for dispatching and clearing domain events from entities.

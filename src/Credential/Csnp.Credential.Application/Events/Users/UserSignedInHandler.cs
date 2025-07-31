@@ -1,5 +1,5 @@
 using Csnp.Credential.Domain.Events.Users;
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Domain.Events;
 using Microsoft.Extensions.Logging;
 
 namespace Csnp.Credential.Application.Events.Users;

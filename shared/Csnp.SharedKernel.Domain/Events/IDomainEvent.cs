@@ -1,4 +1,4 @@
-namespace Csnp.SeedWork.Domain.Events;
+namespace Csnp.SharedKernel.Domain.Events;
 
 /// <summary>
 /// Marker interface for domain events.

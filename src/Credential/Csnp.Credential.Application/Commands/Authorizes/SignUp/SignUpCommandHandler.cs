@@ -1,7 +1,7 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SharedKernel.Domain.ValueObjects;
+using Csnp.SeedWork.Domain.ValueObjects;
+using Csnp.SharedKernel.Application.Abstractions.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

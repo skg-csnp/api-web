@@ -1,5 +1,5 @@
 using Csnp.Credential.Domain.Entities;
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Domain.Events;
 
 namespace Csnp.Credential.Domain.Events.Users;
 

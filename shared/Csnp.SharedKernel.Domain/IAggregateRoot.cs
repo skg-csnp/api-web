@@ -1,4 +1,4 @@
-namespace Csnp.SeedWork.Domain;
+namespace Csnp.SharedKernel.Domain;
 
 /// <summary>
 /// Represents a marker interface to indicate that an entity is an aggregate root in the domain model.

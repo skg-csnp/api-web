@@ -1,4 +1,4 @@
-namespace Csnp.SeedWork.Domain.Events;
+namespace Csnp.SharedKernel.Domain.Events;
 
 /// <summary>
 /// Defines a contract for handling domain events.

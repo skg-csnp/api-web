@@ -1,6 +1,6 @@
-using Csnp.SharedKernel.Domain;
+using Csnp.SeedWork.Domain;
 
-namespace Csnp.SharedKernel.Tests.Unit.Domain;
+namespace Csnp.SeedWork.Tests.Unit.Domain;
 
 public class ValueObjectTests
 {

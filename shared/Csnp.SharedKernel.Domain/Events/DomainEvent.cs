@@ -1,4 +1,4 @@
-namespace Csnp.SeedWork.Domain.Events;
+namespace Csnp.SharedKernel.Domain.Events;
 
 /// <summary>
 /// Represents a base class for all domain events in the system.

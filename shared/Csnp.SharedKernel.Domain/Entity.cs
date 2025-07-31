@@ -1,6 +1,6 @@
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Domain.Events;
 
-namespace Csnp.SeedWork.Domain;
+namespace Csnp.SharedKernel.Domain;
 
 /// <summary>
 /// Represents the base class for all entities in the domain model.

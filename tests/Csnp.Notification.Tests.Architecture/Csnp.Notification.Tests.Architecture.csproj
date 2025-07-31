@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Domain\Csnp.Notification.Domain.csproj" />
-    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Application\Csnp.Notification.Application.csproj" />
     <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Csnp.SharedKernel.Domain.Validators;
+namespace Csnp.SeedWork.Domain.Validators;
 
 /// <summary>
 /// Provides validation logic for email address format.

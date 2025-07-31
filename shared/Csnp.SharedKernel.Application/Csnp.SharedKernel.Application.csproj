@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj" />
+    <ProjectReference Include="..\Csnp.SharedKernel.Domain\Csnp.SharedKernel.Domain.csproj" />
   </ItemGroup>
 
 </Project>

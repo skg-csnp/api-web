@@ -18,13 +18,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Common", "shared\Csnp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.EventBus", "shared\Csnp.EventBus\Csnp.EventBus.csproj", "{82ED9CAB-208B-4BD0-8183-E01980C42D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SeedWork.Application", "shared\Csnp.SeedWork.Application\Csnp.SeedWork.Application.csproj", "{4EADCB06-43BB-4EB9-A033-41A7D830DD14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Application", "shared\Csnp.SharedKernel.Application\Csnp.SharedKernel.Application.csproj", "{4EADCB06-43BB-4EB9-A033-41A7D830DD14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SeedWork.Domain", "shared\Csnp.SeedWork.Domain\Csnp.SeedWork.Domain.csproj", "{25F69885-E368-43F2-B672-83C8D0D921C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Domain", "shared\Csnp.SharedKernel.Domain\Csnp.SharedKernel.Domain.csproj", "{25F69885-E368-43F2-B672-83C8D0D921C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SeedWork.Infrastructure", "shared\Csnp.SeedWork.Infrastructure\Csnp.SeedWork.Infrastructure.csproj", "{32E76F86-7024-4963-93C6-2706107448FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Infrastructure", "shared\Csnp.SharedKernel.Infrastructure\Csnp.SharedKernel.Infrastructure.csproj", "{32E76F86-7024-4963-93C6-2706107448FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel", "shared\Csnp.SharedKernel\Csnp.SharedKernel.csproj", "{23C99139-EB49-4841-9D8F-35FDB7515404}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SeedWork", "shared\Csnp.SeedWork\Csnp.SeedWork.csproj", "{23C99139-EB49-4841-9D8F-35FDB7515404}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
@@ -68,7 +68,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Notification.Tests.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Presentation.Common", "shared\Csnp.Presentation.Common\Csnp.Presentation.Common.csproj", "{D927FF9F-9BB5-4F25-9EA6-88515A80706C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Tests.Unit", "tests\Csnp.SharedKernel.Tests.Unit\Csnp.SharedKernel.Tests.Unit.csproj", "{6A809F70-2149-0791-9D91-A7E21E69B2DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SeedWork.Tests.Unit", "tests\Csnp.SharedKernel.Tests.Unit\Csnp.SeedWork.Tests.Unit.csproj", "{6A809F70-2149-0791-9D91-A7E21E69B2DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject

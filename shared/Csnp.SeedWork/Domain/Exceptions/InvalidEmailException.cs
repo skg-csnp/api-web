@@ -1,4 +1,4 @@
-namespace Csnp.SharedKernel.Domain.Exceptions;
+namespace Csnp.SeedWork.Domain.Exceptions;
 
 /// <summary>
 /// Exception thrown when an email address is in an invalid format.

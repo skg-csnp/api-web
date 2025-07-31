@@ -1,6 +1,6 @@
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Domain.Events;
 
-namespace Csnp.SeedWork.Application.Abstractions.Events;
+namespace Csnp.SharedKernel.Application.Abstractions.Events;
 
 /// <summary>
 /// Defines a contract for dispatching domain events to their corresponding handlers.

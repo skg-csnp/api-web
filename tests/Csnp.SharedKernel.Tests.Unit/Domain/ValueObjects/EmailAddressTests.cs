@@ -1,7 +1,7 @@
-using Csnp.SharedKernel.Domain.Exceptions;
-using Csnp.SharedKernel.Domain.ValueObjects;
+using Csnp.SeedWork.Domain.Exceptions;
+using Csnp.SeedWork.Domain.ValueObjects;
 
-namespace Csnp.SharedKernel.Tests.Unit.Domain.ValueObjects;
+namespace Csnp.SeedWork.Tests.Unit.Domain.ValueObjects;
 
 public class EmailAddressTests
 {

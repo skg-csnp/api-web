@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Api\Csnp.Notification.Api.csproj" />
-    <ProjectReference Include="..\..\src\Notification\Csnp.Notification.Infrastructure\Csnp.Notification.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

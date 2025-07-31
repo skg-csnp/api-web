@@ -1,5 +1,5 @@
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Domain.Events;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Csnp.Credential.Infrastructure.Events;

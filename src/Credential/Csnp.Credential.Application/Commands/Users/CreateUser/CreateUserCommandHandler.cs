@@ -1,6 +1,6 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
-using Csnp.SharedKernel.Domain.ValueObjects;
+using Csnp.SeedWork.Domain.ValueObjects;
 using MediatR;
 
 namespace Csnp.Credential.Application.Commands.Users.CreateUser;

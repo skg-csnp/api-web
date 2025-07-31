@@ -1,7 +1,7 @@
-using Csnp.SharedKernel.Domain.Exceptions;
-using Csnp.SharedKernel.Domain.Validators;
+using Csnp.SeedWork.Domain.Exceptions;
+using Csnp.SeedWork.Domain.Validators;
 
-namespace Csnp.SharedKernel.Domain.ValueObjects;
+namespace Csnp.SeedWork.Domain.ValueObjects;
 
 /// <summary>
 /// Represents an email address as a value object with validation logic.

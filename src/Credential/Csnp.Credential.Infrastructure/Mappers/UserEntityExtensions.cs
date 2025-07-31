@@ -1,6 +1,6 @@
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Persistence;
-using Csnp.SharedKernel.Domain.ValueObjects;
+using Csnp.SeedWork.Domain.ValueObjects;
 
 namespace Csnp.Credential.Infrastructure.Mappers;
 

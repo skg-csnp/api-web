@@ -1,4 +1,4 @@
-namespace Csnp.SharedKernel.Domain;
+namespace Csnp.SeedWork.Domain;
 
 /// <summary>
 /// Represents a base class for value objects in the domain-driven design pattern.

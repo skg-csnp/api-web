@@ -1,8 +1,8 @@
 using Csnp.Credential.Application.Events.Users;
 using Csnp.Credential.Domain.Events.Users;
 using Csnp.EventBus.Abstractions;
-using Csnp.SeedWork.Application.Abstractions.Events;
-using Csnp.SeedWork.Domain.Events;
+using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Domain.Events;
 
 namespace Csnp.Credential.Application.Dispatcher;
 
