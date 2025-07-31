@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Csnp.Common.Security;
+namespace Csnp.SharedKernel.Application.Abstractions.Events.Security;
 
 /// <summary>
 /// Provides methods for generating and validating JSON Web Tokens (JWT).

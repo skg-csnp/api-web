@@ -1,10 +1,12 @@
-using Csnp.Common.Security;
 using Csnp.Credential.Api.Middlewares;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
 using Csnp.EventBus.RabbitMQ;
+using Csnp.Security.Infrastructure;
+using Csnp.SharedKernel.Application.Abstractions.Events.Security;
 using Csnp.SharedKernel.Configuration.DependencyInjection;
 using Csnp.SharedKernel.Configuration.Extensions;
+using Csnp.SharedKernel.Configuration.Settings.Security;
 
 namespace Csnp.Credential.Api;
 
@@ -23,7 +25,9 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+        builder.Services
+            .Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
+            .OverrideWithEnv<JwtSettings>("Jwt", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
         builder.Services.AddSingleton<IJwtService, JwtService>();
 
         builder.Services

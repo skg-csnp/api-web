@@ -70,15 +70,8 @@ Csnp.sln
 │   │   │   └── Events/                          # Integration events
 │   │   └── Application/                         # Shared DTOs, Validation rules (by agreement)
 │
-│   ├── Csnp.Common/                             # Cross-cutting infrastructure utilities
-│   │   ├── Services/                            # EmailService, DateTimeProvider, CacheService
-│   │   ├── Abstractions/                        # ICurrentUser, ICorrelationIdProvider, ILoggerAdapter
-│   │   ├── Utils/                               # Static helpers, constants
+│   ├── Csnp.Security.Infrastructure/            # Cross-cutting infrastructure utilities
 │   │   ├── Security/                            # JWT, Authorization, Encryption
-│   │   ├── Logging/                             # Serilog configuration, enrichers
-│   │   ├── Caching/                             # Redis, Memory cache implementations
-│   │   ├── Monitoring/                          # Health checks, metrics, tracing
-│   │   └── Configuration/                       # Settings, options patterns
 │
 │   └── Csnp.EventBus/                           # Event-driven communication
 │       ├── Abstractions/                        # IEventBus, IIntegrationEvent
@@ -154,14 +147,9 @@ Shared Layers:
 - Enumerations: `Country`, `Language`, etc.
 - **Integration Events**: Cross-context event definitions
 
-### Csnp.Common/
+### Csnp.Security.Infrastructure/
 - Reusable technical services (non-domain)
-- `EmailService`, `DateTimeProvider`, `CacheService`
-- `ICurrentUser`, `ILoggerAdapter`, `ICorrelationIdProvider`
 - **Security**: `IJwtTokenGenerator`, `IPasswordHasher`
-- **Caching**: Multi-level caching implementations
-- **Monitoring**: Health checks, metrics collectors
-- Utility classes, constants, filters
 
 ### Csnp.EventBus/
 - **Event-driven communication** between bounded contexts

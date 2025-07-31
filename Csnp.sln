@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{4F52FD
 		shared\README.md = shared\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Common", "shared\Csnp.Common\Csnp.Common.csproj", "{4B830916-4C15-4D1F-854C-32EE35AF8CF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.Security.Infrastructure", "shared\Csnp.Security.Infrastructure\Csnp.Security.Infrastructure.csproj", "{4B830916-4C15-4D1F-854C-32EE35AF8CF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.EventBus", "shared\Csnp.EventBus\Csnp.EventBus.csproj", "{82ED9CAB-208B-4BD0-8183-E01980C42D3C}"
 EndProject

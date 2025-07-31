@@ -31,10 +31,10 @@ LOC_CREDENTIAL_RABBITMQ__VIRTUALHOST=/
 
 LOC_CREDENTIAL_CONNECTIONSTRINGS__DEFAULT=Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;
 
-LOC_CREDENTIAL_JWTSETTINGS__ISSUER=csnp
-LOC_CREDENTIAL_JWTSETTINGS__AUDIENCE=csnp_clients
-LOC_CREDENTIAL_JWTSETTINGS__SECRETKEY=supersecret_csnp_token_key_123!supersecret_csnp_token_key_123!
-LOC_CREDENTIAL_JWTSETTINGS__EXPIRATIONMINUTES=60
+LOC_CREDENTIAL_JWT__ISSUER=csnp
+LOC_CREDENTIAL_JWT__AUDIENCE=csnp_clients
+LOC_CREDENTIAL_JWT__SECRETKEY=supersecret_csnp_token_key_123!supersecret_csnp_token_key_123!
+LOC_CREDENTIAL_JWT__EXPIRATIONMINUTES=60
 ```
 
 ### `notification.env`

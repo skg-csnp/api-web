@@ -11,4 +11,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Csnp.SharedKernel.Application\Csnp.SharedKernel.Application.csproj" />
+    <ProjectReference Include="..\Csnp.SharedKernel.Configuration\Csnp.SharedKernel.Configuration.csproj" />
+  </ItemGroup>
+
 </Project>

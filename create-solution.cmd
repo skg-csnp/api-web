@@ -42,15 +42,8 @@ call :create_subfolder %SHARED_DIR%\Csnp.SharedKernel.Infrastructure\Messaging
 
 :: Common - Cross-cutting utilities
 echo Creating Common cross-cutting layer...
-call :create_classlib %SHARED_DIR%\Csnp.Common
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Services
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Abstractions
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Utils
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Security
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Logging
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Caching
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Monitoring
-call :create_subfolder %SHARED_DIR%\Csnp.Common\Configuration
+call :create_classlib %SHARED_DIR%\Csnp.Security.Infrastructure
+call :create_subfolder %SHARED_DIR%\Csnp.Security.Infrastructure\Security
 
 :: EventBus - Event-driven communication
 echo Creating EventBus layer...
@@ -174,7 +167,7 @@ dotnet add %SRC_DIR%\Notification\Csnp.Notification.Infrastructure\Csnp.Notifica
 
 :: Presentation references
 dotnet add %SRC_DIR%\Presentation\Csnp.Presentation.Web\Csnp.Presentation.Web.csproj reference ^
-    %SHARED_DIR%\Csnp.Common\Csnp.Common.csproj
+    %SHARED_DIR%\Csnp.Security.Infrastructure\Csnp.Security.Infrastructure.csproj
 
 :: Migration projects references
 dotnet add %MIGRATIONS_DIR%\Csnp.Migrations.Credential\Csnp.Migrations.Credential.csproj reference ^

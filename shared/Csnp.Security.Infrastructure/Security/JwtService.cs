@@ -3,22 +3,21 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Csnp.SharedKernel.Application.Abstractions.Events.Security;
+using Csnp.SharedKernel.Configuration.Settings.Security;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Csnp.Common.Security;
+namespace Csnp.Security.Infrastructure;
 
+/// <summary>
+/// Implementation of <see cref="IJwtService"/> using HMAC SHA256.
+/// </summary>
 public class JwtService : IJwtService
 {
-    private readonly JwtSettings _settings;
-    private readonly byte[] _key;
+    #region -- Implements --
 
-    public JwtService(IOptions<JwtSettings> settings)
-    {
-        _settings = settings.Value;
-        _key = Encoding.UTF8.GetBytes(_settings.SecretKey);
-    }
-
+    /// <inheritdoc/>
     public string GenerateToken(long userId, string userName, IEnumerable<string>? roles = null, TimeSpan? expires = null)
     {
         var claims = new List<Claim>
@@ -44,6 +43,7 @@ public class JwtService : IJwtService
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
+    /// <inheritdoc/>
     public ClaimsPrincipal? ValidateToken(string token)
     {
         try
@@ -69,6 +69,7 @@ public class JwtService : IJwtService
         }
     }
 
+    /// <inheritdoc/>
     public ClaimsPrincipal? DecodeToken(string token)
     {
         var handler = new JwtSecurityTokenHandler();
@@ -84,6 +85,7 @@ public class JwtService : IJwtService
         }
     }
 
+    /// <inheritdoc/>
     public string GenerateRefreshToken()
     {
         byte[] randomBytes = new byte[64];
@@ -91,4 +93,34 @@ public class JwtService : IJwtService
         rng.GetBytes(randomBytes);
         return Convert.ToBase64String(randomBytes);
     }
+
+    #endregion
+
+    #region -- Constructor --
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JwtService"/> class.
+    /// </summary>
+    /// <param name="settings">JWT configuration settings.</param>
+    public JwtService(IOptions<JwtSettings> settings)
+    {
+        _settings = settings.Value;
+        _key = Encoding.UTF8.GetBytes(_settings.SecretKey);
+    }
+
+    #endregion
+
+    #region -- Fields --
+
+    /// <summary>
+    /// JWT settings loaded from configuration.
+    /// </summary>
+    private readonly JwtSettings _settings;
+
+    /// <summary>
+    /// Encoded secret key used for signing and validation.
+    /// </summary>
+    private readonly byte[] _key;
+
+    #endregion
 }

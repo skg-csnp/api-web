@@ -53,7 +53,7 @@ Reusable domain logic and implementations shared across bounded contexts:
 
 ---
 
-## ⚙️ Csnp.Common
+## ⚙️ Csnp.Security.Infrastructure
 
 * General-purpose technical helpers:
 
@@ -91,7 +91,7 @@ All shared libraries are located in the `/shared/` directory at the root level:
 
 ```
 shared/
-├── Csnp.Common/
+├── Csnp.Security.Infrastructure/
 ├── Csnp.EventBus/
 ├── Csnp.Presentation.Common/
 ├── Csnp.SeedWork.Application/
