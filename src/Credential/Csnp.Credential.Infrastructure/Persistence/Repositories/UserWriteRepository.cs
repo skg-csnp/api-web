@@ -1,3 +1,4 @@
+using System.Globalization;
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
@@ -36,5 +37,40 @@ public class UserWriteRepository : IUserWriteRepository
         user.SetId(entity.Id);
 
         await DomainEventHelper.DispatchAndClearAsync(user, _dispatcher, cancellationToken);
+    }
+
+    public async Task UpdateAsync(User user, CancellationToken cancellationToken)
+    {
+        UserEntity? entity = await _userManager.FindByIdAsync(user.Id.ToString(CultureInfo.InvariantCulture));
+        if (entity is null)
+        {
+            throw new KeyNotFoundException("User not found");
+        }
+
+        entity.DisplayName = user.DisplayName;
+        entity.Email = user.Email.Value;
+
+        IdentityResult result = await _userManager.UpdateAsync(entity);
+        if (!result.Succeeded)
+        {
+            string errors = string.Join("; ", result.Errors.Select(e => e.Description));
+            throw new InvalidOperationException($"Update user failed: {errors}");
+        }
+    }
+
+    public async Task DeleteAsync(User user, CancellationToken cancellationToken)
+    {
+        UserEntity? entity = await _userManager.FindByIdAsync(user.Id.ToString(CultureInfo.InvariantCulture));
+        if (entity is null)
+        {
+            return;
+        }
+
+        await _userManager.DeleteAsync(entity);
+    }
+
+    public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        return await _userManager.FindByEmailAsync(email) is not null;
     }
 }

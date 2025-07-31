@@ -18,6 +18,12 @@ public class UserReadRepository : IUserReadRepository
         _userManager = userManager;
     }
 
+    public async Task<User?> GetByIdAsync(long id, CancellationToken cancellationToken)
+    {
+        UserEntity? entity = await _userManager.FindByIdAsync(id.ToString(CultureInfo.InvariantCulture));
+        return entity?.ToDomain();
+    }
+
     public async Task<IReadOnlyList<User>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _context.Users

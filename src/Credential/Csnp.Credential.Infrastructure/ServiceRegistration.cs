@@ -4,8 +4,10 @@ using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
 using Csnp.Credential.Infrastructure.Persistence;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
+using Csnp.Credential.Infrastructure.UnitOfWork;
 using Csnp.EventBus.Abstractions;
 using Csnp.EventBus.RabbitMQ;
+using Csnp.SeedWork.Application.UnitOfWork;
 using Csnp.SharedKernel.Application.Abstractions.Events;
 using Csnp.SharedKernel.Domain.Events;
 using IdGen;
@@ -37,7 +39,8 @@ public static class ServiceRegistration
             .AddRoles<RoleEntity>()
             .AddEntityFrameworkStores<CredentialDbContext>();
 
-        // Register repositories
+        // Register UnitOfWork and Repositories
+        services.AddScoped<IUnitOfWork, CredentialUnitOfWork>();
         services.AddScoped<IUserReadRepository, UserReadRepository>();
         services.AddScoped<IUserWriteRepository, UserWriteRepository>();
 
