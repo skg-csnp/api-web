@@ -5,7 +5,10 @@ using Csnp.Notification.Application.Events;
 using Csnp.Notification.Application.Handlers;
 using Csnp.Notification.Infrastructure.Messaging;
 using Csnp.Notification.Infrastructure.Services;
+using Csnp.SharedKernel.Configuration.Settings.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Minio;
 
 namespace Csnp.Notification.Infrastructure;
 
@@ -37,6 +40,17 @@ public static class ServiceRegistration
         services.AddScoped<IEmailService, EmailService>(); // sends actual email
         services.AddSingleton<IIntegrationEventMetadata<UserSignedUpIntegrationEvent>, UserSignedUpMetadata>(); // defines RabbitMQ metadata like queue name
         services.AddHostedService<RabbitMqSubscriber<UserSignedUpIntegrationEvent>>(); // background service to consume event from RabbitMQ
+        services.AddScoped<IMinioTemplateLoader, MinioTemplateLoader>();
+        services.AddScoped<IEmailTemplateRenderer, EmailTemplateRenderer>();
+        services.AddSingleton(sp =>
+        {
+            MinioSettings settings = sp.GetRequiredService<IOptions<MinioSettings>>().Value;
+            return new MinioClient()
+                .WithEndpoint(settings.Endpoint)
+                .WithCredentials(settings.AccessKey, settings.SecretKey)
+                .WithSSL(settings.Secure)
+                .Build();
+        });
         return services;
     }
 }

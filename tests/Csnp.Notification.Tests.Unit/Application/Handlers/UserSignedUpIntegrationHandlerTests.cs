@@ -14,26 +14,38 @@ public class UserSignedUpIntegrationHandlerTests
         // Arrange
         var mockLogger = new Mock<ILogger<UserSignedUpIntegrationHandler>>();
         var mockEmailService = new Mock<IEmailService>();
+
+        const string expectedTemplate = "common-email-otp.html";
+        const string expectedEmail = "test@example.com";
+
+        mockEmailService
+            .Setup(es => es.SendEmailAsync(
+                expectedTemplate,
+                expectedEmail,
+                It.IsAny<object>()))
+            .Returns(Task.CompletedTask);
+
         var handler = new UserSignedUpIntegrationHandler(mockLogger.Object, mockEmailService.Object);
 
-        var @event = new UserSignedUpIntegrationEvent
+        var integrationEvent = new UserSignedUpIntegrationEvent
         {
             UserId = 1,
-            Email = "test@example.com"
+            Email = expectedEmail
         };
 
         // Act
-        await handler.HandleAsync(@event);
+        await handler.HandleAsync(integrationEvent);
 
         // Assert
         mockEmailService.Verify(es =>
-            es.SendWelcomeEmail("test@example.com"), Times.Once);
+            es.SendEmailAsync(expectedTemplate, expectedEmail, It.IsAny<object>()),
+            Times.Once);
 
-        mockLogger.Verify(l =>
-            l.Log(
+        mockLogger.Verify(logger =>
+            logger.Log(
                 LogLevel.Information,
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) =>
+                It.Is<It.IsAnyType>((v, _) =>
                     v != null && v.ToString()!.Contains("Send welcome email")),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),

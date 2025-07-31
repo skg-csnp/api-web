@@ -16,9 +16,9 @@ public class UserSignedUpIntegrationHandler : IIntegrationHandler<UserSignedUpIn
         _emailService = emailService;
     }
 
-    public Task HandleAsync(UserSignedUpIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
+    public async Task HandleAsync(UserSignedUpIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
     {
         _logger.LogInformation("[Notification] Send welcome email to: {Email} (UserId: {UserId})", integrationEvent.Email, integrationEvent.UserId);
-        return _emailService.SendWelcomeEmail(integrationEvent.Email);
+        await _emailService.SendEmailAsync("common-email-otp.html", integrationEvent.Email, integrationEvent);
     }
 }

@@ -16,10 +16,10 @@ public class EmailSettings : ConnectionCredential
     /// <summary>
     /// The display name of the sender when sending emails.
     /// </summary>
-    public string SenderName { get; set; } = string.Empty;
+    public string? SenderName { get; set; }
 
     /// <summary>
     /// The email address of the sender.
     /// </summary>
-    public string SenderEmail { get; set; } = string.Empty;
+    public string? SenderEmail { get; set; }
 }

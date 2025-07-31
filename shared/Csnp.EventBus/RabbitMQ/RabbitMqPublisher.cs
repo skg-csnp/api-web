@@ -50,7 +50,7 @@ public class RabbitMqPublisher : IIntegrationEventPublisher
             durable: true
         );
 
-        string message = JsonSerializer.Serialize(integrationEvent);
+        string message = JsonSerializer.Serialize(integrationEvent, integrationEvent.GetType());
         byte[] body = Encoding.UTF8.GetBytes(message);
 
         var props = new BasicProperties();

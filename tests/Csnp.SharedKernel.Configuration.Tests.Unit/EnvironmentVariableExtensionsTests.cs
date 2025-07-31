@@ -116,8 +116,8 @@ public class EnvironmentVariableExtensionsTests
         // Assert
         Assert.Equal(string.Empty, result.Host);
         Assert.Equal(0, result.Port);
-        Assert.Equal(string.Empty, result.SenderEmail);
-        Assert.Equal(string.Empty, result.SenderName);
+        Assert.Null(result.SenderEmail);
+        Assert.Null(result.SenderName);
         Assert.Equal(string.Empty, result.Username);
         Assert.Equal(string.Empty, result.Password);
         Assert.True(result.EnableSsl);

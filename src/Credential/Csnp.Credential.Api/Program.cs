@@ -3,6 +3,8 @@ using Csnp.Credential.Api.Middlewares;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
 using Csnp.EventBus.RabbitMQ;
+using Csnp.SharedKernel.Configuration.DependencyInjection;
+using Csnp.SharedKernel.Configuration.Extensions;
 
 namespace Csnp.Credential.Api;
 
@@ -24,7 +26,10 @@ public class Program
         builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
         builder.Services.AddSingleton<IJwtService, JwtService>();
 
-        builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"));
+        builder.Services
+            .Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"))
+            .OverrideWithEnv<RabbitMqSettings>("RabbitMq", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
+
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddApplication();
 
