@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\shared\Csnp.SharedKernel.Configuration\Csnp.SharedKernel.Configuration.csproj" />
     <ProjectReference Include="..\Csnp.Notification.Application\Csnp.Notification.Application.csproj" />
   </ItemGroup>
 
