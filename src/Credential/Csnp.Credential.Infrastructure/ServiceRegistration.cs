@@ -7,11 +7,13 @@ using Csnp.Credential.Infrastructure.Persistence.Repositories;
 using Csnp.EventBus.Abstractions;
 using Csnp.EventBus.RabbitMQ;
 using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Configuration.Settings.Persistence;
 using Csnp.SharedKernel.Domain.Events;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Csnp.Credential.Infrastructure;
 
@@ -19,10 +21,12 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        string? connectionString = config.GetConnectionString("Default");
-
-        services.AddDbContext<CredentialDbContext>(options =>
-            options.UseSqlServer(connectionString));
+        services.AddDbContext<CredentialDbContext>((sp, options) =>
+        {
+            SqlServerSettings settings = sp.GetRequiredService<IOptions<SqlServerSettings>>().Value;
+            string connStr = settings.ToConnectionString();
+            options.UseSqlServer(connStr);
+        });
 
         // Add ASP.NET Identity services
         services

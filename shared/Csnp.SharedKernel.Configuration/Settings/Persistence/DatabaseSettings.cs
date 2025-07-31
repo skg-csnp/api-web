@@ -1,13 +1,13 @@
 using Csnp.SharedKernel.Configuration.Settings.Common;
 
-namespace Csnp.SharedKernel.Configuration.Settings.Data;
+namespace Csnp.SharedKernel.Configuration.Settings.Persistence;
 
 /// <summary>
 /// Represents the settings used to configure database connections.
 /// Inherits basic credential properties and adds a database name.
 /// Also includes a method to generate the database connection string.
 /// </summary>
-public class DatabaseSettings : ConnectionCredential
+public abstract class DatabaseSettings : ConnectionCredential
 {
     /// <summary>
     /// The name of the database to connect to.
@@ -19,8 +19,5 @@ public class DatabaseSettings : ConnectionCredential
     /// Can be overridden by derived classes for other database engines.
     /// </summary>
     /// <returns>A valid connection string for use in database clients.</returns>
-    public virtual string ToConnectionString()
-    {
-        return string.Empty;
-    }
+    public abstract string ToConnectionString();
 }

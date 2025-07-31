@@ -1,4 +1,4 @@
-namespace Csnp.SharedKernel.Configuration.Settings.Data;
+namespace Csnp.SharedKernel.Configuration.Settings.Persistence;
 
 /// <summary>
 /// Represents the configuration settings required to connect to a SQL Server database.
@@ -18,6 +18,6 @@ public class SqlServerSettings : DatabaseSettings
     /// <returns>A formatted connection string for connecting to a SQL Server database.</returns>
     public override string ToConnectionString()
     {
-        return $"Server={Host};Database={Database};User Id={Username};Password={Password};TrustServerCertificate={TrustServerCertificate};";
+        return $"Server={Host},{Port};Database={Database};User Id={Username};Password={Password};TrustServerCertificate={TrustServerCertificate};";
     }
 }

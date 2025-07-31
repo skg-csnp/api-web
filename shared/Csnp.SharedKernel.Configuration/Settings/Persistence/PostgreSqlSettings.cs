@@ -1,4 +1,4 @@
-namespace Csnp.SharedKernel.Configuration.Settings.Data;
+namespace Csnp.SharedKernel.Configuration.Settings.Persistence;
 
 /// <summary>
 /// Represents the configuration settings required to connect to a PostgreSQL database.

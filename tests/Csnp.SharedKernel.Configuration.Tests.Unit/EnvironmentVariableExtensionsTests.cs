@@ -1,6 +1,6 @@
-using Csnp.SharedKernel.Configuration.Settings.Data;
 using Csnp.SharedKernel.Configuration.Settings.Email;
 using Csnp.SharedKernel.Configuration.Settings.Messaging;
+using Csnp.SharedKernel.Configuration.Settings.Persistence;
 using Csnp.SharedKernel.Configuration.Settings.Storage;
 
 namespace Csnp.SharedKernel.Configuration.Tests.Unit;
