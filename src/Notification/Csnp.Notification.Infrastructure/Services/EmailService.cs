@@ -8,24 +8,19 @@ using Microsoft.Extensions.Options;
 namespace Csnp.Notification.Infrastructure.Services;
 
 /// <summary>
-/// Sends emails using SMTP and renders templates from MinIO.
+/// Provides functionality to send emails using SMTP and renders templates from a storage backend.
 /// </summary>
 public class EmailService : IEmailService
 {
-    private readonly EmailSettings _settings;
-    private readonly IEmailTemplateRenderer _renderer;
-    private readonly ILogger<EmailService> _logger;
+    #region -- Implements --
 
-    public EmailService(
-        IOptions<EmailSettings> settings,
-        IEmailTemplateRenderer renderer,
-        ILogger<EmailService> logger)
-    {
-        _settings = settings.Value;
-        _renderer = renderer;
-        _logger = logger;
-    }
-
+    /// <summary>
+    /// Sends an HTML email using the specified template and data model.
+    /// </summary>
+    /// <param name="templateName">The name of the email template to render.</param>
+    /// <param name="toEmail">The recipient's email address.</param>
+    /// <param name="model">The data model used to render the email template.</param>
+    /// <returns>A task representing the asynchronous send operation.</returns>
     public async Task SendEmailAsync(string templateName, string toEmail, object model)
     {
         string htmlBody = await _renderer.RenderAsync(templateName, model);
@@ -46,6 +41,47 @@ public class EmailService : IEmailService
 
         await smtpClient.SendMailAsync(message);
 
-        _logger.LogInformation("📧 Email sent to {Email} with template {Template}", toEmail, templateName);
+        _logger.LogInformation("Email sent to {Email} with template {Template}", toEmail, templateName);
     }
+
+    #endregion
+
+    #region -- Methods --
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailService"/> class.
+    /// </summary>
+    /// <param name="settings">The email configuration settings.</param>
+    /// <param name="renderer">The email template renderer.</param>
+    /// <param name="logger">The logger used to log information.</param>
+    public EmailService(
+        IOptions<EmailSettings> settings,
+        IEmailTemplateRenderer renderer,
+        ILogger<EmailService> logger)
+    {
+        _settings = settings.Value;
+        _renderer = renderer;
+        _logger = logger;
+    }
+
+    #endregion
+
+    #region -- Fields --
+
+    /// <summary>
+    /// The email configuration settings.
+    /// </summary>
+    private readonly EmailSettings _settings;
+
+    /// <summary>
+    /// The service used to render email templates.
+    /// </summary>
+    private readonly IEmailTemplateRenderer _renderer;
+
+    /// <summary>
+    /// The logger used for logging email operations.
+    /// </summary>
+    private readonly ILogger<EmailService> _logger;
+
+    #endregion
 }

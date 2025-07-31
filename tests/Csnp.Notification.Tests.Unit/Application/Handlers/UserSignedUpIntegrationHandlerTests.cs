@@ -15,7 +15,7 @@ public class UserSignedUpIntegrationHandlerTests
         var mockLogger = new Mock<ILogger<UserSignedUpIntegrationHandler>>();
         var mockEmailService = new Mock<IEmailService>();
 
-        const string expectedTemplate = "common-email-otp.html";
+        const string expectedTemplate = "signup-welcome.html";
         const string expectedEmail = "test@example.com";
 
         mockEmailService
