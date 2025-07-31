@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="IdGen" Version="3.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
@@ -9,11 +15,5 @@
     <ProjectReference Include="..\Csnp.Notification.Application\Csnp.Notification.Application.csproj" />
     <ProjectReference Include="..\Csnp.Notification.Infrastructure.Persistence\Csnp.Notification.Infrastructure.Persistence.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
 
 </Project>
