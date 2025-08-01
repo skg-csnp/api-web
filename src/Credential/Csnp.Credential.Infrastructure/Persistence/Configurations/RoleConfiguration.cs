@@ -9,7 +9,7 @@ public class RoleConfiguration : IEntityTypeConfiguration<RoleEntity>
 
     public void Configure(EntityTypeBuilder<RoleEntity> builder)
     {
-        builder.ToTable("Roles", "credential");
+        builder.ToTable("Roles");
     }
 
     #endregion

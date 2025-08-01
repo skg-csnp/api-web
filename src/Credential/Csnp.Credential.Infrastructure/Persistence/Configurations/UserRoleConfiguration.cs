@@ -10,7 +10,7 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<l
 
     public void Configure(EntityTypeBuilder<IdentityUserRole<long>> builder)
     {
-        builder.ToTable("UserRoles", "credential");
+        builder.ToTable("UserRoles");
     }
 
     #endregion

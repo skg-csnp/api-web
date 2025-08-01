@@ -7,6 +7,7 @@ using Csnp.Notification.Application.Events;
 using Csnp.Notification.Application.Handlers;
 using Csnp.Notification.Infrastructure.Messaging;
 using Csnp.Notification.Infrastructure.Persistence;
+using Csnp.Notification.Infrastructure.Persistence.Constants;
 using Csnp.Notification.Infrastructure.Persistence.Repositories;
 using Csnp.Notification.Infrastructure.Services;
 using Csnp.SharedKernel.Application.Behaviors;
@@ -55,9 +56,12 @@ public static class ServiceRegistration
     {
         services.AddDbContext<NotificationDbContext>((sp, options) =>
         {
-            PostgreSqlSettings settings = sp.GetRequiredService<IOptions<PostgreSqlSettings>>().Value;
+            SqlServerSettings settings = sp.GetRequiredService<IOptions<SqlServerSettings>>().Value;
             string connStr = settings.ToConnectionString();
-            options.UseNpgsql(connStr);
+            options.UseSqlServer(connStr, connOptions =>
+            {
+                connOptions.MigrationsHistoryTable("__EFMigrationsHistory", SchemaNames.Default);
+            });
         });
 
         services.AddScoped<IEmailService, EmailService>();

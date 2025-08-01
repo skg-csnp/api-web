@@ -72,7 +72,7 @@ Csnp.Credential.Infrastructure/
 ```json
 {
   "ConnectionStrings": {
-    "Default": "Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;"
+    "Default": "Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;"
   }
 }
 ```
@@ -104,7 +104,7 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
     {
         var connectionString = args.Length > 0
             ? args[0]
-            : "Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
+            : "Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
 
         var optionsBuilder = new DbContextOptionsBuilder<CredentialDbContext>();
         optionsBuilder.UseSqlServer(connectionString);

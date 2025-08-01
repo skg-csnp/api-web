@@ -3,6 +3,7 @@ using Csnp.Credential.Application.Events.Users;
 using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
 using Csnp.Credential.Infrastructure.Persistence;
+using Csnp.Credential.Infrastructure.Persistence.Constants;
 using Csnp.Credential.Infrastructure.Persistence.Repositories;
 using Csnp.EventBus.Abstractions;
 using Csnp.EventBus.RabbitMQ;
@@ -25,7 +26,10 @@ public static class ServiceRegistration
         {
             SqlServerSettings settings = sp.GetRequiredService<IOptions<SqlServerSettings>>().Value;
             string connStr = settings.ToConnectionString();
-            options.UseSqlServer(connStr);
+            options.UseSqlServer(connStr, connOptions =>
+            {
+                connOptions.MigrationsHistoryTable("__EFMigrationsHistory", SchemaNames.Default);
+            });
         });
 
         // Add ASP.NET Identity services

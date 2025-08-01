@@ -10,7 +10,7 @@ public class RoleClaimConfiguration : IEntityTypeConfiguration<IdentityRoleClaim
 
     public void Configure(EntityTypeBuilder<IdentityRoleClaim<long>> builder)
     {
-        builder.ToTable("RoleClaims", "credential");
+        builder.ToTable("RoleClaims");
     }
 
     #endregion

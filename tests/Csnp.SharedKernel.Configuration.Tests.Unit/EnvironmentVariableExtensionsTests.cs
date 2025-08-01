@@ -37,7 +37,7 @@ public class EnvironmentVariableExtensionsTests
     {
         // Arrange
         Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__HOST", "localhost");
-        Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__DATABASE", "local_csnp_notification");
+        Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__DATABASE", "local_csnp");
         Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__USERNAME", "local");
         Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__PASSWORD", "");
         Environment.SetEnvironmentVariable("LOC_NOTIFICATION_DATABASE__TRUSTSERVERCERTIFICATE", "true");
@@ -47,7 +47,7 @@ public class EnvironmentVariableExtensionsTests
 
         // Assert
         Assert.Equal("localhost", result.Host);
-        Assert.Equal("local_csnp_notification", result.Database);
+        Assert.Equal("local_csnp", result.Database);
         Assert.Equal("local", result.Username);
         Assert.Equal(string.Empty, result.Password);
         Assert.True(result.TrustServerCertificate);

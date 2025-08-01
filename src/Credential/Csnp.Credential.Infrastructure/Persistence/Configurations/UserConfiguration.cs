@@ -9,7 +9,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 
     public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
-        builder.ToTable("Users", "credential");
+        builder.ToTable("Users");
         builder.Property(p => p.DisplayName).HasMaxLength(256);
         builder.HasIndex(p => p.Email).IsUnique();
         builder.Property(p => p.Id).ValueGeneratedNever();

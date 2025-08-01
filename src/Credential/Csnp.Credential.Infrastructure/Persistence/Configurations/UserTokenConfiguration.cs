@@ -10,7 +10,7 @@ public class UserTokenConfiguration : IEntityTypeConfiguration<IdentityUserToken
 
     public void Configure(EntityTypeBuilder<IdentityUserToken<long>> builder)
     {
-        builder.ToTable("UserTokens", "credential");
+        builder.ToTable("UserTokens");
     }
 
     #endregion

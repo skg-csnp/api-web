@@ -1,4 +1,5 @@
 using Csnp.Credential.Infrastructure.Events;
+using Csnp.Credential.Infrastructure.Persistence.Constants;
 using Csnp.SharedKernel.Application.Abstractions.Events;
 using Csnp.SharedKernel.Domain.Events;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -14,6 +15,7 @@ public class CredentialDbContext : IdentityDbContext<UserEntity, RoleEntity, lon
     {
         base.OnModelCreating(builder);
 
+        builder.HasDefaultSchema(SchemaNames.Default);
         builder.ApplyConfigurationsFromAssembly(typeof(UserEntity).Assembly);
     }
 

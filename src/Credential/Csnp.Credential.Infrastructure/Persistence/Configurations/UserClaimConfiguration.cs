@@ -10,7 +10,7 @@ public class UserClaimConfiguration : IEntityTypeConfiguration<IdentityUserClaim
 
     public void Configure(EntityTypeBuilder<IdentityUserClaim<long>> builder)
     {
-        builder.ToTable("UserClaims", "credential");
+        builder.ToTable("UserClaims");
     }
 
     #endregion

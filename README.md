@@ -63,6 +63,7 @@ docs/                        # Architecture and design documentation            
 | 📁 Format .NET Code           | [docs/dotnet-format-guide.md](docs/dotnet-format-guide.md)         |
 | 📁 RESTful API Standards      | [docs/restful-api-guideline.md](docs/restful-api-guideline.md)     |
 | 📁 Class Design               | [docs/class-design.md](docs/class-design.md)                       |
+| 📁 Shared Database Design     | [docs/shared-db-schema.md](docs/shared-db-schema.md)               |
 
 ---
 

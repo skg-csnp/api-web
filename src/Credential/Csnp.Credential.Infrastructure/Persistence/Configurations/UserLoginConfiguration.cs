@@ -10,7 +10,7 @@ public class UserLoginConfiguration : IEntityTypeConfiguration<IdentityUserLogin
 
     public void Configure(EntityTypeBuilder<IdentityUserLogin<long>> builder)
     {
-        builder.ToTable("UserLogins", "credential");
+        builder.ToTable("UserLogins");
     }
 
     #endregion

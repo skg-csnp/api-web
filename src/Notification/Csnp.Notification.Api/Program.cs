@@ -33,8 +33,8 @@ public class Program
             .OverrideWithEnv<EmailSettings>("Email", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
-            .Configure<PostgreSqlSettings>(builder.Configuration.GetSection("Database"))
-            .OverrideWithEnv<PostgreSqlSettings>("Database", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
+            .Configure<SqlServerSettings>(builder.Configuration.GetSection("Database"))
+            .OverrideWithEnv<SqlServerSettings>("Database", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
             .AddApplication()

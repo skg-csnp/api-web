@@ -29,7 +29,7 @@ LOC_CREDENTIAL_RABBITMQ__USERNAME=guest
 LOC_CREDENTIAL_RABBITMQ__PASSWORD=guest
 LOC_CREDENTIAL_RABBITMQ__VIRTUALHOST=/
 
-LOC_CREDENTIAL_CONNECTIONSTRINGS__DEFAULT=Server=localhost;Database=local_csnp_credential;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;
+LOC_CREDENTIAL_CONNECTIONSTRINGS__DEFAULT=Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;
 
 LOC_CREDENTIAL_JWT__ISSUER=csnp
 LOC_CREDENTIAL_JWT__AUDIENCE=csnp_clients
@@ -45,7 +45,7 @@ LOC_NOTIFICATION_RABBITMQ__USERNAME=guest
 LOC_NOTIFICATION_RABBITMQ__PASSWORD=guest
 LOC_NOTIFICATION_RABBITMQ__VIRTUALHOST=/
 
-LOC_CREDENTIAL_CONNECTIONSTRINGS__DEFAULT=Server=localhost;Database=local_csnp_notification;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;
+LOC_CREDENTIAL_CONNECTIONSTRINGS__DEFAULT=Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;
 
 LOC_NOTIFICATION_MINIO__ENDPOINT=localhost:9000
 LOC_NOTIFICATION_MINIO__ACCESSKEY=minioadmin

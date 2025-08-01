@@ -1,3 +1,4 @@
+using Csnp.Notification.Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 
 namespace Csnp.Notification.Infrastructure.Persistence;
@@ -10,7 +11,7 @@ public class NotificationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.HasDefaultSchema("notification");
+        modelBuilder.HasDefaultSchema(SchemaNames.Default);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationDbContext).Assembly);
     }
 
