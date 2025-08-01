@@ -16,7 +16,7 @@ internal sealed class EmailLogWriteRepository : IEmailLogWriteRepository
     public async Task InsertAsync(EmailLog emailLog, CancellationToken cancellationToken)
     {
         EmailLogEntity entity = emailLog.ToEntity();
-        entity.Id = _idGen.CreateId();
+        entity.SetId(_idGen.CreateId());
         await _dbContext.EmailLogs.AddAsync(entity, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
     }

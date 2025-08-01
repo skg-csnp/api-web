@@ -31,28 +31,25 @@ public static class ServiceRegistration
     #region -- Methods --
 
     /// <summary>
-    /// Registers application-level services for the Notification module.
-    /// Includes MediatR handlers, validators, and pipeline behaviors.
+    /// Adds application-layer services such as MediatR handlers, validators, and pipeline behaviors.
     /// </summary>
-    /// <param name="services">The DI service collection.</param>
-    /// <returns>The updated service collection.</returns>
+    /// <param name="services">The service collection to register dependencies into.</param>
+    /// <returns>The modified <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateEmailLogCommand).Assembly));
         services.AddValidatorsFromAssemblyContaining<CreateEmailLogCommandValidator>();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
         services.AddScoped<IIntegrationHandler<UserSignedUpIntegrationEvent>, UserSignedUpIntegrationHandler>();
-
         return services;
     }
 
     /// <summary>
-    /// Registers infrastructure-level services for the Notification module.
-    /// Includes email services, template renderers, repositories, and background event subscribers.
+    /// Registers infrastructure-level services such as database context, identity, repositories, 
+    /// ID generation, domain event handlers, and integration event publisher.
     /// </summary>
     /// <param name="services">The DI service collection.</param>
-    /// <returns>The updated service collection.</returns>
+    /// <returns>The modified <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddDbContext<NotificationDbContext>((sp, options) =>
@@ -73,12 +70,11 @@ public static class ServiceRegistration
         services.AddScoped<IEmailLogWriteRepository, EmailLogWriteRepository>();
 
         // Register ID generator
-        services.AddSingleton<IdGenerator>(_ =>
+        services.AddSingleton(_ =>
         {
-            var epoch = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var structure = new IdStructure(45, 2, 16);
-            var options = new IdGeneratorOptions(structure, new DefaultTimeSource(epoch));
-
+            DateTime epoch = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            IdStructure structure = new(45, 2, 16);
+            IdGeneratorOptions options = new(structure, new DefaultTimeSource(epoch));
             int workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out int id) ? id : 0;
             return new IdGenerator(workerId, options);
         });

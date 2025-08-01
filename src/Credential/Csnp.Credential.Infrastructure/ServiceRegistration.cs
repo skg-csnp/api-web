@@ -1,4 +1,5 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
+using Csnp.Credential.Application.Commands.Users.CreateUser;
 using Csnp.Credential.Application.Events.Users;
 using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
@@ -8,19 +9,46 @@ using Csnp.Credential.Infrastructure.Persistence.Repositories;
 using Csnp.EventBus.Abstractions;
 using Csnp.EventBus.RabbitMQ;
 using Csnp.SharedKernel.Application.Abstractions.Events;
+using Csnp.SharedKernel.Application.Behaviors;
 using Csnp.SharedKernel.Configuration.Settings.Persistence;
 using Csnp.SharedKernel.Domain.Events;
+using FluentValidation;
 using IdGen;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace Csnp.Credential.Infrastructure;
 
+/// <summary>
+/// Provides extension methods to register Credential module services into the DI container.
+/// </summary>
 public static class ServiceRegistration
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
+    #region -- Methods --
+
+    /// <summary>
+    /// Adds application-layer services such as MediatR handlers, validators, and pipeline behaviors.
+    /// </summary>
+    /// <param name="services">The service collection to register dependencies into.</param>
+    /// <returns>The modified <see cref="IServiceCollection"/>.</returns>
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
+        services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+        return services;
+    }
+
+    /// <summary>
+    /// Registers infrastructure-level services such as database context, identity, repositories, 
+    /// ID generation, domain event handlers, and integration event publisher.
+    /// </summary>
+    /// <param name="services">The DI service collection.</param>
+    /// <returns>The modified <see cref="IServiceCollection"/>.</returns>
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddDbContext<CredentialDbContext>((sp, options) =>
         {
@@ -50,12 +78,11 @@ public static class ServiceRegistration
         services.AddScoped<IUserWriteRepository, UserWriteRepository>();
 
         // Register ID generator
-        services.AddSingleton<IdGenerator>(_ =>
+        services.AddSingleton(_ =>
         {
-            var epoch = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var structure = new IdStructure(45, 2, 16);
-            var options = new IdGeneratorOptions(structure, new DefaultTimeSource(epoch));
-
+            DateTime epoch = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            IdStructure structure = new(45, 2, 16);
+            IdGeneratorOptions options = new(structure, new DefaultTimeSource(epoch));
             int workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out int id) ? id : 0;
             return new IdGenerator(workerId, options);
         });
@@ -63,9 +90,10 @@ public static class ServiceRegistration
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IDomainHandler<UserCreatedDomainEvent>, UserCreatedHandler>();
         services.AddScoped<IDomainHandler<UserSignedInDomainEvent>, UserSignedInHandler>();
-
         services.AddSingleton<IIntegrationEventPublisher, RabbitMqPublisher>();
 
         return services;
     }
+
+    #endregion
 }

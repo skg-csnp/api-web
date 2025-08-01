@@ -17,9 +17,8 @@ internal static class EmailLogEntityExtensions
     /// <returns>A mapped EmailLogEntity object.</returns>
     public static EmailLogEntity ToEntity(this EmailLog domain)
     {
-        return new EmailLogEntity
+        var entity = new EmailLogEntity
         {
-            Id = domain.Id,
             To = domain.To,
             Subject = domain.Subject,
             Body = domain.Body,
@@ -28,6 +27,10 @@ internal static class EmailLogEntityExtensions
             ErrorMessage = domain.ErrorMessage,
             CorrelationId = domain.CorrelationId
         };
+
+        entity.SetId(domain.Id);
+
+        return entity;
     }
 
     /// <summary>

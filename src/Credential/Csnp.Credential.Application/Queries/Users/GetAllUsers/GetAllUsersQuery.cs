@@ -3,5 +3,7 @@ using MediatR;
 
 namespace Csnp.Credential.Application.Queries.Users.GetAllUsers;
 
-public record GetAllUsersQuery() : IRequest<IEnumerable<UserDto>>;
-
+/// <summary>
+/// Represents a query to retrieve all users.
+/// </summary>
+public sealed record GetAllUsersQuery() : IRequest<IEnumerable<UserDto>>;

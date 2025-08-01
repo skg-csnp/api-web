@@ -4,8 +4,13 @@ using Csnp.SeedWork.Domain.ValueObjects;
 
 namespace Csnp.Credential.Infrastructure.Mappers;
 
+/// <summary>
+/// Extension methods for mapping between <see cref="User"/> domain models and <see cref="UserEntity"/> entities.
+/// </summary>
 public static class UserEntityExtensions
 {
+    #region -- Methods --
+
     /// <summary>
     /// Maps the <see cref="User"/> domain object to a <see cref="UserEntity"/> entity.
     /// </summary>
@@ -33,7 +38,9 @@ public static class UserEntityExtensions
             entity.Id,
             EmailAddress.Create(entity.Email!),
             entity.PasswordHash!,
-            entity.DisplayName ?? ""
+            entity.DisplayName ?? string.Empty
         );
     }
+
+    #endregion
 }

@@ -2,16 +2,26 @@ using FluentValidation;
 
 namespace Csnp.Credential.Application.Commands.Authorizes.SignUp;
 
-public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
+/// <summary>
+/// Validator for <see cref="SignUpCommand"/> using FluentValidation.
+/// </summary>
+public sealed class SignUpCommandValidator : AbstractValidator<SignUpCommand>
 {
+    #region -- Methods --
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpCommandValidator"/> class.
+    /// </summary>
     public SignUpCommandValidator()
     {
         RuleFor(x => x.Email)
-            .NotEmpty()
-            .EmailAddress();
+            .NotEmpty().WithMessage("Email must not be empty.")
+            .EmailAddress().WithMessage("Email format is invalid.");
 
         RuleFor(x => x.Password)
-            .NotEmpty()
-            .MinimumLength(6);
+            .NotEmpty().WithMessage("Password must not be empty.")
+            .MinimumLength(6).WithMessage("Password must be at least 6 characters.");
     }
+
+    #endregion
 }

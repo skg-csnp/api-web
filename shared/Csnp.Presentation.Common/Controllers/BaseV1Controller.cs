@@ -1,3 +1,4 @@
+using Csnp.Presentation.Common.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,8 +9,8 @@ namespace Csnp.Presentation.Common.Controllers;
 /// Includes shared functionality such as access to the <see cref="ISender"/> (MediatR).
 /// </summary>
 [ApiController]
-[Route("v1/[controller]")]
-[ApiExplorerSettings(GroupName = "v1")]
+[Route(ApiVersionConstants.V1 + "/[controller]")]
+[ApiExplorerSettings(GroupName = ApiVersionConstants.Default)]
 public abstract class BaseV1Controller : ControllerBase
 {
     #region -- Methods --

@@ -9,21 +9,30 @@ using Csnp.SharedKernel.Configuration.Settings.Storage;
 
 namespace Csnp.Notification.Api;
 
+/// <summary>
+/// The main entry point of the API application.
+/// </summary>
 public class Program
 {
+    /// <summary>
+    /// Main method for starting the web application.
+    /// </summary>
+    /// <param name="args">Command-line arguments.</param>
     public static void Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
+        // Add controllers
         builder.Services.AddControllers();
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-        builder.Services.AddOpenApi();
 
+        // Add OpenAPI/Swagger services
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // Add Swagger + OpenAPI extensions
+        builder.Services.AddOpenApi();
+
+        // Configuration: Bind and override from environment
         builder.Services
             .Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"))
             .OverrideWithEnv<RabbitMqSettings>("RabbitMq", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
@@ -40,28 +49,26 @@ public class Program
             .Configure<EmailSettings>(builder.Configuration.GetSection("Email"))
             .OverrideWithEnv<EmailSettings>("Email", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
+        // Register application and infrastructure layers
         builder.Services
             .AddApplication()
             .AddInfrastructure();
 
         WebApplication app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        // Enable Swagger in development
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
-
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
+        // Add custom exception handler middleware
         app.UseCustomExceptionHandler();
 
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
-
-
         app.MapControllers();
 
         app.Run();

@@ -7,13 +7,51 @@ using Microsoft.Extensions.Logging;
 
 namespace Csnp.Credential.Application.Commands.Authorizes.SignUp;
 
-public class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
+/// <summary>
+/// Handles the <see cref="SignUpCommand"/> to register a new user.
+/// </summary>
+public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
 {
-    private readonly IUserReadRepository _userReadRepository;
-    private readonly IUserWriteRepository _userWriteRepository;
-    private readonly IDomainEventDispatcher _domainEventDispatcher;
-    private readonly ILogger<SignUpCommandHandler> _logger;
+    #region -- Implements --
 
+    /// <summary>
+    /// Handles the sign-up command.
+    /// </summary>
+    /// <param name="request">The sign-up request data.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The ID of the newly registered user.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when a user with the same email already exists.</exception>
+    public async Task<long> Handle(SignUpCommand request, CancellationToken cancellationToken)
+    {
+        User? existingUser = await _userReadRepository.GetByUserNameAsync(request.Email, cancellationToken);
+        if (existingUser is not null)
+        {
+            throw new InvalidOperationException("User already exists with the given email.");
+        }
+
+        EmailAddress email = EmailAddress.Create(request.Email);
+        User user = User.Create(email, request.Password, request.DisplayName);
+
+        await _userWriteRepository.AddAsync(user, cancellationToken);
+
+        _logger.LogInformation("New user signed up with ID {UserId}", user.Id);
+
+        await _domainEventDispatcher.DispatchAsync(user.DomainEvents, cancellationToken);
+
+        return user.Id;
+    }
+
+    #endregion
+
+    #region -- Methods --
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpCommandHandler"/> class.
+    /// </summary>
+    /// <param name="userReadRepository">The user read repository.</param>
+    /// <param name="userWriteRepository">The user write repository.</param>
+    /// <param name="domainEventDispatcher">The domain event dispatcher.</param>
+    /// <param name="logger">The logger instance.</param>
     public SignUpCommandHandler(
         IUserReadRepository userReadRepository,
         IUserWriteRepository userWriteRepository,
@@ -26,23 +64,29 @@ public class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
         _logger = logger;
     }
 
-    public async Task<long> Handle(SignUpCommand request, CancellationToken cancellationToken)
-    {
-        User? existingUser = await _userReadRepository.GetByUserNameAsync(request.Email, cancellationToken);
-        if (existingUser is not null)
-        {
-            throw new InvalidOperationException("User already exists with the given email.");
-        }
+    #endregion
 
-        var email = EmailAddress.Create(request.Email);
-        var user = User.Create(email, request.Password, request.DisplayName);
+    #region -- Fields --
 
-        await _userWriteRepository.AddAsync(user, cancellationToken);
+    /// <summary>
+    /// Provides access to user read operations.
+    /// </summary>
+    private readonly IUserReadRepository _userReadRepository;
 
-        _logger.LogInformation("New user signed up with ID {UserId}", user.Id);
+    /// <summary>
+    /// Provides access to user write operations.
+    /// </summary>
+    private readonly IUserWriteRepository _userWriteRepository;
 
-        await _domainEventDispatcher.DispatchAsync(user.DomainEvents, cancellationToken);
+    /// <summary>
+    /// Dispatches domain events raised during user creation.
+    /// </summary>
+    private readonly IDomainEventDispatcher _domainEventDispatcher;
 
-        return user.Id;
-    }
+    /// <summary>
+    /// Logger for writing structured logs during sign-up process.
+    /// </summary>
+    private readonly ILogger<SignUpCommandHandler> _logger;
+
+    #endregion
 }
