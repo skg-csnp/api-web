@@ -64,6 +64,7 @@ docs/                        # Architecture and design documentation            
 | 📁 RESTful API Standards      | [docs/restful-api-guideline.md](docs/restful-api-guideline.md)     |
 | 📁 Class Design               | [docs/class-design.md](docs/class-design.md)                       |
 | 📁 Shared Database Design     | [docs/shared-db-schema.md](docs/shared-db-schema.md)               |
+| 📁 Git ISO process            | [docs/git-iso-process.md](docs/git-iso-process.md)                 |
 
 ---
 
