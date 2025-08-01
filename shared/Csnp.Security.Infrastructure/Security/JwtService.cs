@@ -96,7 +96,7 @@ public class JwtService : IJwtService
 
     #endregion
 
-    #region -- Constructor --
+    #region -- Methods --
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JwtService"/> class.

@@ -45,7 +45,7 @@ public class MinioTemplateLoader : IMinioTemplateLoader
 
     #endregion
 
-    #region -- Constructor --
+    #region -- Methods --
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MinioTemplateLoader"/> class.

@@ -42,7 +42,7 @@ public class EmailTemplateRenderer : IEmailTemplateRenderer
 
     #endregion
 
-    #region -- Constructor --
+    #region -- Methods --
 
     /// <summary>
     /// Initializes a new instance of the <see cref="EmailTemplateRenderer"/> class.
