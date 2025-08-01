@@ -3,6 +3,7 @@ using Csnp.Notification.Infrastructure;
 using Csnp.SharedKernel.Configuration.DependencyInjection;
 using Csnp.SharedKernel.Configuration.Extensions;
 using Csnp.SharedKernel.Configuration.Settings.Email;
+using Csnp.SharedKernel.Configuration.Settings.Persistence;
 using Csnp.SharedKernel.Configuration.Settings.Storage;
 
 namespace Csnp.Notification.Api;
@@ -31,8 +32,13 @@ public class Program
             .Configure<EmailSettings>(builder.Configuration.GetSection("Email"))
             .OverrideWithEnv<EmailSettings>("Email", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
-        builder.Services.AddApplication();
-        builder.Services.AddInfrastructure();
+        builder.Services
+            .Configure<PostgreSqlSettings>(builder.Configuration.GetSection("Database"))
+            .OverrideWithEnv<PostgreSqlSettings>("Database", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
+
+        builder.Services
+            .AddApplication()
+            .AddInfrastructure();
 
         WebApplication app = builder.Build();
 

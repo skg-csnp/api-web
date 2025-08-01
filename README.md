@@ -62,6 +62,7 @@ docs/                        # Architecture and design documentation            
 | 📁 SeedWork vs SharedKernel   | [docs/domain-layer-comparison.md](docs/domain-layer-comparison.md) |
 | 📁 Format .NET Code           | [docs/dotnet-format-guide.md](docs/dotnet-format-guide.md)         |
 | 📁 RESTful API Standards      | [docs/restful-api-guideline.md](docs/restful-api-guideline.md)     |
+| 📁 Class Design               | [docs/class-design.md](docs/class-design.md)                       |
 
 ---
 
