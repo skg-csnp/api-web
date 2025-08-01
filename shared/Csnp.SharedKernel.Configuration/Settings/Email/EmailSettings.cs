@@ -11,7 +11,7 @@ public class EmailSettings : ConnectionCredential
     /// <summary>
     /// Indicates whether SSL should be used when connecting to the SMTP server.
     /// </summary>
-    public bool EnableSsl { get; set; } = true;
+    public bool EnableSsl { get; set; }
 
     /// <summary>
     /// The display name of the sender when sending emails.

@@ -115,5 +115,11 @@ You can manually remove variables from:
 
 ---
 
-Feel free to adapt this script to Linux/macOS using `export` and `source` if needed.
+## 📩 Install MailDev using Docker
+```cmd
+docker run -d --name maildev --restart=always -p 1080:1080 -p 1025:1025 maildev/maildev
+```
 
+---
+
+Feel free to adapt this script to Linux/macOS using `export` and `source` if needed.

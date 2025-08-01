@@ -120,7 +120,7 @@ public class EnvironmentVariableExtensionsTests
         Assert.Null(result.SenderName);
         Assert.Equal(string.Empty, result.Username);
         Assert.Equal(string.Empty, result.Password);
-        Assert.True(result.EnableSsl);
+        Assert.False(result.EnableSsl);
     }
 
     #endregion
