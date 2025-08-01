@@ -14,6 +14,7 @@ using Csnp.SharedKernel.Application.Behaviors;
 using Csnp.SharedKernel.Configuration.Settings.Persistence;
 using Csnp.SharedKernel.Configuration.Settings.Storage;
 using FluentValidation;
+using IdGen;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -67,7 +68,20 @@ public static class ServiceRegistration
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IEmailTemplateRenderer, EmailTemplateRenderer>();
         services.AddScoped<IMinioTemplateLoader, MinioTemplateLoader>();
+
+        // Register repositories
         services.AddScoped<IEmailLogWriteRepository, EmailLogWriteRepository>();
+
+        // Register ID generator
+        services.AddSingleton<IdGenerator>(_ =>
+        {
+            var epoch = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var structure = new IdStructure(45, 2, 16);
+            var options = new IdGeneratorOptions(structure, new DefaultTimeSource(epoch));
+
+            int workerId = int.TryParse(Environment.GetEnvironmentVariable("WORKER_ID"), out int id) ? id : 0;
+            return new IdGenerator(workerId, options);
+        });
 
         services.AddSingleton<IIntegrationEventMetadata<UserSignedUpIntegrationEvent>, UserSignedUpMetadata>();
         services.AddHostedService<RabbitMqSubscriber<UserSignedUpIntegrationEvent>>();

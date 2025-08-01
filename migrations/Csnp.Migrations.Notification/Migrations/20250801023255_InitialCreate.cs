@@ -19,8 +19,7 @@ namespace Csnp.Migrations.Notification.Migrations
                 schema: "notification",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<long>(type: "bigint", nullable: false),
                     To = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: false),

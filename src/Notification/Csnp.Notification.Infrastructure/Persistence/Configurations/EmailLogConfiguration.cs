@@ -12,6 +12,7 @@ public class EmailLogConfiguration : IEntityTypeConfiguration<EmailLogEntity>
         builder.ToTable("EmailLogs");
         builder.HasKey(e => e.Id);
 
+        builder.Property(p => p.Id).ValueGeneratedNever();
         builder.Property(e => e.To).IsRequired().HasMaxLength(256);
         builder.Property(e => e.Subject).IsRequired().HasMaxLength(500);
         builder.Property(e => e.Body).IsRequired();
