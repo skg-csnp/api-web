@@ -1,7 +1,7 @@
-using Csnp.Credential.Api.Middlewares;
 using Csnp.Credential.Application;
 using Csnp.Credential.Infrastructure;
 using Csnp.EventBus.RabbitMQ;
+using Csnp.Presentation.Common.Middlewares;
 using Csnp.Security.Infrastructure;
 using Csnp.SharedKernel.Application.Abstractions.Events.Security;
 using Csnp.SharedKernel.Configuration.DependencyInjection;
@@ -27,11 +27,6 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services
-            .Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
-            .OverrideWithEnv<JwtSettings>("Jwt", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
-        builder.Services.AddSingleton<IJwtService, JwtService>();
-
-        builder.Services
             .Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"))
             .OverrideWithEnv<RabbitMqSettings>("RabbitMq", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
 
@@ -39,8 +34,14 @@ public class Program
             .Configure<SqlServerSettings>(builder.Configuration.GetSection("Database"))
             .OverrideWithEnv<SqlServerSettings>("Database", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
 
-        builder.Services.AddInfrastructure(builder.Configuration);
-        builder.Services.AddApplication();
+        builder.Services
+            .Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
+            .OverrideWithEnv<JwtSettings>("Jwt", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
+        builder.Services.AddSingleton<IJwtService, JwtService>();
+
+        builder.Services
+            .AddApplication()
+            .AddInfrastructure(builder.Configuration);
 
         WebApplication app = builder.Build();
 
