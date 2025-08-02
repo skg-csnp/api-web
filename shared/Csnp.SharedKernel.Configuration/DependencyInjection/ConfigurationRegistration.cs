@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Csnp.SharedKernel.Configuration.DependencyInjection;
@@ -31,7 +32,7 @@ public static class ConfigurationRegistration
             T envValues = sectionName.ConvertEnvironmentVariable<T>(envPrefix);
             T result = mergeFunc(options, envValues);
 
-            foreach (System.Reflection.PropertyInfo prop in typeof(T).GetProperties())
+            foreach (PropertyInfo prop in typeof(T).GetProperties())
             {
                 object? value = prop.GetValue(result);
                 prop.SetValue(options, value);

@@ -15,7 +15,7 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, SignInRespons
 
     private readonly IUserReadRepository _userReadRepository;
     private readonly IJwtService _jwtService;
-    private readonly IDomainEventDispatcher _dispatcher;
+    private readonly ICompositeDomainEventDispatcher _dispatcher;
 
     #endregion
 
@@ -30,7 +30,7 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, SignInRespons
     public SignInCommandHandler(
         IUserReadRepository userReadRepository,
         IJwtService jwtService,
-        IDomainEventDispatcher dispatcher)
+        ICompositeDomainEventDispatcher dispatcher)
     {
         _userReadRepository = userReadRepository;
         _jwtService = jwtService;

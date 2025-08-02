@@ -19,7 +19,7 @@ public static class DomainEventHelper
     /// <returns>A task that represents the asynchronous operation.</returns>
     public static async Task DispatchAndClearAsync(
         Entity<long> entity,
-        IDomainEventDispatcher dispatcher,
+        ICompositeDomainEventDispatcher dispatcher,
         CancellationToken cancellationToken = default)
     {
         await dispatcher.DispatchAsync(entity.DomainEvents, cancellationToken);

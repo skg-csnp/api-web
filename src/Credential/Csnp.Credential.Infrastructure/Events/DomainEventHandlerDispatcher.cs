@@ -6,32 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Csnp.Credential.Infrastructure.Events;
 
 /// <summary>
-/// Dispatches domain events to their corresponding handlers.
+/// Dispatches domain events to their corresponding in-process handlers.
 /// </summary>
-public class DomainEventDispatcher : IDomainEventDispatcher
+public sealed class DomainEventHandlerDispatcher : IDomainEventHandlerDispatcher
 {
-    #region -- Fields --
+    #region -- Implements --
 
-    private readonly IServiceProvider _serviceProvider;
-
-    #endregion
-
-    #region -- Methods --
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DomainEventDispatcher"/> class.
-    /// </summary>
-    /// <param name="serviceProvider">The service provider used for resolving event handlers.</param>
-    public DomainEventDispatcher(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
-
-    /// <summary>
-    /// Dispatches the given collection of domain events to their respective handlers.
-    /// </summary>
-    /// <param name="domainEvents">The domain events to dispatch.</param>
-    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <inheritdoc />
     public async Task DispatchAsync(IEnumerable<IDomainEvent> domainEvents, CancellationToken cancellationToken = default)
     {
         foreach (IDomainEvent domainEvent in domainEvents)
@@ -50,6 +31,28 @@ public class DomainEventDispatcher : IDomainEventDispatcher
             }
         }
     }
+
+    #endregion
+
+    #region -- Methods --
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DomainEventHandlerDispatcher"/> class.
+    /// </summary>
+    /// <param name="serviceProvider">The service provider used to resolve event handlers.</param>
+    public DomainEventHandlerDispatcher(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    #endregion
+
+    #region -- Fields --
+
+    /// <summary>
+    /// Provides access to scoped services.
+    /// </summary>
+    private readonly IServiceProvider _serviceProvider;
 
     #endregion
 }

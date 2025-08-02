@@ -30,7 +30,7 @@ public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
         }
 
         EmailAddress email = EmailAddress.Create(request.Email);
-        User user = User.Create(email, request.Password, request.DisplayName);
+        User user = User.CreateBySignup(email, request.Password, request.DisplayName);
 
         await _userWriteRepository.AddAsync(user, cancellationToken);
 
@@ -55,7 +55,7 @@ public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
     public SignUpCommandHandler(
         IUserReadRepository userReadRepository,
         IUserWriteRepository userWriteRepository,
-        IDomainEventDispatcher domainEventDispatcher,
+        ICompositeDomainEventDispatcher domainEventDispatcher,
         ILogger<SignUpCommandHandler> logger)
     {
         _userReadRepository = userReadRepository;
@@ -81,7 +81,7 @@ public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, long>
     /// <summary>
     /// Dispatches domain events raised during user creation.
     /// </summary>
-    private readonly IDomainEventDispatcher _domainEventDispatcher;
+    private readonly ICompositeDomainEventDispatcher _domainEventDispatcher;
 
     /// <summary>
     /// Logger for writing structured logs during sign-up process.

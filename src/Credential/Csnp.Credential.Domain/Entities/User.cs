@@ -53,17 +53,31 @@ public class User : Entity<long>, IAggregateRoot
     }
 
     /// <summary>
-    /// Creates a new user instance with domain events.
+    /// Creates a new user instance from the signup flow, including signup-related domain events.
     /// </summary>
     /// <param name="email">The user's email address.</param>
     /// <param name="password">The user's password.</param>
     /// <param name="displayName">The user's display name.</param>
-    /// <returns>A new <see cref="User"/> instance.</returns>
-    public static User Create(EmailAddress email, string password, string displayName)
+    /// <returns>A new <see cref="User"/> instance with <see cref="UserSignedUpDomainEvent"/>.</returns>
+    public static User CreateBySignup(EmailAddress email, string password, string displayName)
     {
         User user = new User(email, password, displayName);
         user.AddDomainEvent(new UserCreatedDomainEvent(user.Id, email.Value));
         user.AddDomainEvent(new UserSignedUpDomainEvent(user));
+        return user;
+    }
+
+    /// <summary>
+    /// Creates a new user instance by an administrator, without raising signup-related events.
+    /// </summary>
+    /// <param name="email">The user's email address.</param>
+    /// <param name="password">The user's password.</param>
+    /// <param name="displayName">The user's display name.</param>
+    /// <returns>A new <see cref="User"/> instance with <see cref="UserCreatedDomainEvent"/> only.</returns>
+    public static User CreateByAdmin(EmailAddress email, string password, string displayName)
+    {
+        User user = new User(email, password, displayName);
+        user.AddDomainEvent(new UserCreatedDomainEvent(user.Id, email.Value));
         return user;
     }
 

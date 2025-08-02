@@ -1,5 +1,6 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Application.Commands.Users.CreateUser;
+using Csnp.Credential.Application.Dispatcher;
 using Csnp.Credential.Application.Events.Users;
 using Csnp.Credential.Domain.Events.Users;
 using Csnp.Credential.Infrastructure.Events;
@@ -38,7 +39,8 @@ public static class ServiceRegistration
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
         services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+        services.AddScoped<ICompositeDomainEventDispatcher, CompositeDomainEventDispatcher>();
+
         return services;
     }
 
@@ -87,10 +89,13 @@ public static class ServiceRegistration
             return new IdGenerator(workerId, options);
         });
 
-        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IDomainHandler<UserCreatedDomainEvent>, UserCreatedHandler>();
         services.AddScoped<IDomainHandler<UserSignedInDomainEvent>, UserSignedInHandler>();
+
         services.AddSingleton<IIntegrationEventPublisher, RabbitMqPublisher>();
+
+        services.AddScoped<IDomainEventHandlerDispatcher, DomainEventHandlerDispatcher>();
+        services.AddScoped<IDomainToIntegrationDispatcher, DomainToIntegrationDispatcher>();
 
         return services;
     }

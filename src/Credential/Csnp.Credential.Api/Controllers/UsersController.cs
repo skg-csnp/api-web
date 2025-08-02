@@ -10,8 +10,6 @@ namespace Csnp.Credential.Api.Controllers;
 /// <summary>
 /// Handles user-related API endpoints.
 /// </summary>
-[ApiController]
-[Route("api/v1/[controller]")]
 public class UsersController : BaseV1Controller
 {
     #region -- Methods --

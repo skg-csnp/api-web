@@ -1,8 +1,6 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.Credential.Domain.Entities;
 using Csnp.Credential.Infrastructure.Mappers;
-using Csnp.SharedKernel.Application.Abstractions.Events;
-using Csnp.SharedKernel.Application.Events;
 using IdGen;
 using Microsoft.AspNetCore.Identity;
 
@@ -29,8 +27,6 @@ public sealed class UserWriteRepository : IUserWriteRepository
         }
 
         user.SetId(entity.Id);
-
-        await DomainEventHelper.DispatchAndClearAsync(user, _dispatcher, cancellationToken);
     }
 
     #endregion
@@ -42,12 +38,10 @@ public sealed class UserWriteRepository : IUserWriteRepository
     /// </summary>
     /// <param name="userManager">The ASP.NET Core identity user manager.</param>
     /// <param name="idGen">The ID generator for creating unique identifiers.</param>
-    /// <param name="dispatcher">The domain event dispatcher used to publish domain events.</param>
-    public UserWriteRepository(UserManager<UserEntity> userManager, IdGenerator idGen, IDomainEventDispatcher dispatcher)
+    public UserWriteRepository(UserManager<UserEntity> userManager, IdGenerator idGen)
     {
         _userManager = userManager;
         _idGen = idGen;
-        _dispatcher = dispatcher;
     }
 
     #endregion
@@ -63,11 +57,6 @@ public sealed class UserWriteRepository : IUserWriteRepository
     /// The ID generator for creating unique identifiers.
     /// </summary>
     private readonly IdGenerator _idGen;
-
-    /// <summary>
-    /// The dispatcher for publishing domain events.
-    /// </summary>
-    private readonly IDomainEventDispatcher _dispatcher;
 
     #endregion
 }
