@@ -1,13 +1,13 @@
 # Csnp.Migrations.Notification
 
-This project handles database migrations and schema seeding using **Entity Framework Core** and **ASP.NET Core Identity** with **SQL Server**.
+This project handles database migrations and schema seeding using **Entity Framework Core** and **ASP.NET Core Identity** with **PostgreSQL**.
 
 ---
 
 ## ✅ Requirements
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-- SQL Server (Local or Docker)
+- PostgreSQL (Local or Docker)
 - Visual Studio with Package Manager Console
 
 ---
@@ -17,7 +17,7 @@ This project handles database migrations and schema seeding using **Entity Frame
 Run the following commands in the **Package Manager Console** with `Csnp.Migrations.Notification` selected as **Default Project**:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 9.0.8
+Install-Package Npgsql.EntityFrameworkCore.PostgreSQL -Version 9.0.4
 Install-Package Microsoft.EntityFrameworkCore.Design -Version 9.0.8
 Install-Package Microsoft.EntityFrameworkCore.Tools -Version 9.0.8
 Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore -Version 9.0.8

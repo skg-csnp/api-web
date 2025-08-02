@@ -16,11 +16,11 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
     {
         string connectionString = args.Length > 0
             ? args[0]
-            : "Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
+            : "Host=localhost;Port=5432;Database=local_csnp;Username=local;Password=Local+54321z@";
 
         DbContextOptionsBuilder<CredentialDbContext> optionsBuilder = new DbContextOptionsBuilder<CredentialDbContext>();
 
-        optionsBuilder.UseSqlServer(connectionString, builder =>
+        optionsBuilder.UseNpgsql(connectionString, builder =>
         {
             builder.MigrationsAssembly("Csnp.Migrations.Credential");
             builder.MigrationsHistoryTable("__ef_migrations_history", SchemaNames.Default);

@@ -1,13 +1,13 @@
 # Csnp.Migrations.Credential
 
-This project handles database migrations and schema seeding using **Entity Framework Core** and **ASP.NET Core Identity** with **SQL Server**.
+This project handles database migrations and schema seeding using **Entity Framework Core** and **ASP.NET Core Identity** with **PostgreSQL**.
 
 ---
 
 ## ✅ Requirements
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-- SQL Server (Local or Docker)
+- PostgreSQL (Local or Docker)
 - Visual Studio with Package Manager Console
 
 ---
@@ -17,7 +17,7 @@ This project handles database migrations and schema seeding using **Entity Frame
 Run the following commands in the **Package Manager Console** with `Csnp.Migrations.Credential` selected as **Default Project**:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 9.0.8
+Install-Package Npgsql.EntityFrameworkCore.PostgreSQL -Version 9.0.4
 Install-Package Microsoft.EntityFrameworkCore.Design -Version 9.0.8
 Install-Package Microsoft.EntityFrameworkCore.Tools -Version 9.0.8
 Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore -Version 9.0.8
@@ -35,7 +35,7 @@ Csnp.Migrations.Credential/
 ├── Migrations/                # Auto-generated EF migration files
 ├── Configurations/            # Fluent API configurations per entity
 ├── Seeds/                     # Optional seeding logic
-├── appsettings.json           # Connection string for SQL Server
+├── appsettings.json           # Connection string for PostgreSQL
 └── CredentialDbContextFactory.cs  # For design-time context creation
 
 Csnp.Credential.Domain/
@@ -72,7 +72,7 @@ Csnp.Credential.Infrastructure/
 ```json
 {
   "ConnectionStrings": {
-    "Default": "Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;"
+    "Default": "Host=localhost;Port=5432;Database=local_csnp;Username=local;Password=Local+54321z@"
   }
 }
 ```
@@ -104,10 +104,10 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
     {
         var connectionString = args.Length > 0
             ? args[0]
-            : "Server=localhost;Database=local_csnp;User Id=local;Password=Local+54321z@;TrustServerCertificate=True;";
+            : "Host=localhost;Port=5432;Database=local_csnp;Username=local;Password=Local+54321z@";
 
         var optionsBuilder = new DbContextOptionsBuilder<CredentialDbContext>();
-        optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseNpgsql(connectionString);
 
         return new CredentialDbContext(optionsBuilder.Options);
     }
@@ -246,7 +246,7 @@ public static class DependencyInjection
         var connectionString = config.GetConnectionString("Default");
 
         services.AddDbContext<CredentialDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseNpgsql(connectionString));
 
         services.AddScoped<IUserRepository, UserRepository>();
 

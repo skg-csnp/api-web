@@ -38,8 +38,8 @@ public class Program
             .OverrideWithEnv<RabbitMqSettings>("RabbitMq", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
-            .Configure<SqlServerSettings>(builder.Configuration.GetSection("Database"))
-            .OverrideWithEnv<SqlServerSettings>("Database", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
+            .Configure<PostgreSqlSettings>(builder.Configuration.GetSection("Database"))
+            .OverrideWithEnv<PostgreSqlSettings>("Database", "LOC_NOTIFICATION", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
             .Configure<MinioSettings>(builder.Configuration.GetSection("Minio"))

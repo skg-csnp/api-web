@@ -20,13 +20,13 @@ namespace Csnp.Migrations.Notification.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false),
-                    to = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    subject = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    body = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    sent_at = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    is_success = table.Column<bool>(type: "bit", nullable: false),
-                    error_message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    correlation_id = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    to = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    subject = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    body = table.Column<string>(type: "text", nullable: false),
+                    sent_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    is_success = table.Column<bool>(type: "boolean", nullable: false),
+                    error_message = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    correlation_id = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
