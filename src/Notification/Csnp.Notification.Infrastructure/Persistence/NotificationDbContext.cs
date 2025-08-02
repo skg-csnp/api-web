@@ -1,4 +1,5 @@
 using Csnp.Notification.Infrastructure.Persistence.Constants;
+using Csnp.SharedKernel.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Csnp.Notification.Infrastructure.Persistence;
@@ -18,6 +19,7 @@ public class NotificationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.UseSnakeCaseNames(); // apply snake_case to all table/column/index/etc.
         modelBuilder.HasDefaultSchema(SchemaNames.Default);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationDbContext).Assembly);
     }

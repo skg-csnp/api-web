@@ -1,4 +1,5 @@
 using Csnp.Credential.Infrastructure.Persistence.Constants;
+using Csnp.SharedKernel.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ public class CredentialDbContext : IdentityDbContext<UserEntity, RoleEntity, lon
     {
         base.OnModelCreating(builder);
 
+        builder.UseSnakeCaseNames(); // apply snake_case to all table/column/index/etc.
         builder.HasDefaultSchema(SchemaNames.Default);
         builder.ApplyConfigurationsFromAssembly(typeof(UserEntity).Assembly);
     }

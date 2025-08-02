@@ -1,3 +1,4 @@
+using Csnp.Notification.Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +14,7 @@ public class EmailLogConfiguration : IEntityTypeConfiguration<EmailLogEntity>
     /// <inheritdoc />
     public void Configure(EntityTypeBuilder<EmailLogEntity> builder)
     {
-        builder.ToTable("EmailLogs");
+        builder.ToTable(TableNames.EmailLogs);
 
         builder.HasKey(e => e.Id);
 
