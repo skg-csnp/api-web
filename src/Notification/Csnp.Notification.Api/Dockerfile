@@ -36,5 +36,12 @@ RUN dotnet publish "./Csnp.Notification.Api.csproj" -c $BUILD_CONFIGURATION -o /
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
+
+# Add custom CA certificate for internal HTTPS (e.g., MinIO self-signed)
+USER root
+COPY rootCA.crt /usr/local/share/ca-certificates/minio.crt
+RUN update-ca-certificates
+USER $APP_UID
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Csnp.Notification.Api.dll"]
