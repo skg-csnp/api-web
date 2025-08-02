@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -20,10 +21,10 @@ namespace Csnp.Migrations.Credential.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    normalized_name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    concurrency_stamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    normalized_name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    concurrency_stamp = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,21 +37,21 @@ namespace Csnp.Migrations.Credential.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false),
-                    display_name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    user_name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    normalized_user_name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    normalized_email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    email_confirmed = table.Column<bool>(type: "bit", nullable: false),
-                    password_hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    security_stamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    concurrency_stamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    phone_number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    phone_number_confirmed = table.Column<bool>(type: "bit", nullable: false),
-                    two_factor_enabled = table.Column<bool>(type: "bit", nullable: false),
-                    lockout_end = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    lockout_enabled = table.Column<bool>(type: "bit", nullable: false),
-                    access_failed_count = table.Column<int>(type: "int", nullable: false)
+                    display_name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    user_name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    normalized_user_name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    normalized_email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    email_confirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    password_hash = table.Column<string>(type: "text", nullable: true),
+                    security_stamp = table.Column<string>(type: "text", nullable: true),
+                    concurrency_stamp = table.Column<string>(type: "text", nullable: true),
+                    phone_number = table.Column<string>(type: "text", nullable: true),
+                    phone_number_confirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    two_factor_enabled = table.Column<bool>(type: "boolean", nullable: false),
+                    lockout_end = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    lockout_enabled = table.Column<bool>(type: "boolean", nullable: false),
+                    access_failed_count = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,11 +63,11 @@ namespace Csnp.Migrations.Credential.Migrations
                 schema: "credential",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     role_id = table.Column<long>(type: "bigint", nullable: false),
-                    claim_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    claim_value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    claim_type = table.Column<string>(type: "text", nullable: true),
+                    claim_value = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,11 +86,11 @@ namespace Csnp.Migrations.Credential.Migrations
                 schema: "credential",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     user_id = table.Column<long>(type: "bigint", nullable: false),
-                    claim_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    claim_value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    claim_type = table.Column<string>(type: "text", nullable: true),
+                    claim_value = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,9 +109,9 @@ namespace Csnp.Migrations.Credential.Migrations
                 schema: "credential",
                 columns: table => new
                 {
-                    login_provider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    provider_key = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    provider_display_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    login_provider = table.Column<string>(type: "text", nullable: false),
+                    provider_key = table.Column<string>(type: "text", nullable: false),
+                    provider_display_name = table.Column<string>(type: "text", nullable: true),
                     user_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -158,9 +159,9 @@ namespace Csnp.Migrations.Credential.Migrations
                 columns: table => new
                 {
                     user_id = table.Column<long>(type: "bigint", nullable: false),
-                    login_provider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    login_provider = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    value = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -185,8 +186,7 @@ namespace Csnp.Migrations.Credential.Migrations
                 schema: "credential",
                 table: "roles",
                 column: "normalized_name",
-                unique: true,
-                filter: "[normalized_name] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "i_x_asp_net_user_claims_user_id",
@@ -217,16 +217,14 @@ namespace Csnp.Migrations.Credential.Migrations
                 schema: "credential",
                 table: "users",
                 column: "email",
-                unique: true,
-                filter: "[email] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "user_name_index",
                 schema: "credential",
                 table: "users",
                 column: "normalized_user_name",
-                unique: true,
-                filter: "[normalized_user_name] IS NOT NULL");
+                unique: true);
         }
 
         /// <inheritdoc />

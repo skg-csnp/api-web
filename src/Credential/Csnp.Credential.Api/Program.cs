@@ -39,8 +39,8 @@ public class Program
             .OverrideWithEnv<RabbitMqSettings>("RabbitMq", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
-            .Configure<SqlServerSettings>(builder.Configuration.GetSection("Database"))
-            .OverrideWithEnv<SqlServerSettings>("Database", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
+            .Configure<PostgreSqlSettings>(builder.Configuration.GetSection("Database"))
+            .OverrideWithEnv<PostgreSqlSettings>("Database", "LOC_CREDENTIAL", (original, env) => original.MergeNonDefaultValues(env));
 
         builder.Services
             .Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))

@@ -54,9 +54,9 @@ public static class ServiceRegistration
     {
         services.AddDbContext<NotificationDbContext>((sp, options) =>
         {
-            SqlServerSettings settings = sp.GetRequiredService<IOptions<SqlServerSettings>>().Value;
+            PostgreSqlSettings settings = sp.GetRequiredService<IOptions<PostgreSqlSettings>>().Value;
             string connStr = settings.ToConnectionString();
-            options.UseSqlServer(connStr, connOptions =>
+            options.UseNpgsql(connStr, connOptions =>
             {
                 connOptions.MigrationsHistoryTable("__ef_migrations_history", SchemaNames.Default);
             });
