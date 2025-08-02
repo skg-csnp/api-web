@@ -58,7 +58,7 @@ public static class ServiceRegistration
             string connStr = settings.ToConnectionString();
             options.UseSqlServer(connStr, connOptions =>
             {
-                connOptions.MigrationsHistoryTable("__EFMigrationsHistory", SchemaNames.Default);
+                connOptions.MigrationsHistoryTable("__ef_migrations_history", SchemaNames.Default);
             });
         });
 

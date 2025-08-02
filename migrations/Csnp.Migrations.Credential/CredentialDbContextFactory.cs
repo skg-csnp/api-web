@@ -23,7 +23,7 @@ public class CredentialDbContextFactory : IDesignTimeDbContextFactory<Credential
         optionsBuilder.UseSqlServer(connectionString, builder =>
         {
             builder.MigrationsAssembly("Csnp.Migrations.Credential");
-            builder.MigrationsHistoryTable("__EFMigrationsHistory", SchemaNames.Default);
+            builder.MigrationsHistoryTable("__ef_migrations_history", SchemaNames.Default);
         });
 
         return new CredentialDbContext(optionsBuilder.Options);

@@ -23,7 +23,7 @@ public class NotificationDbContextFactory : IDesignTimeDbContextFactory<Notifica
         optionsBuilder.UseSqlServer(connectionString, builder =>
         {
             builder.MigrationsAssembly("Csnp.Migrations.Notification");
-            builder.MigrationsHistoryTable("__EFMigrationsHistory", SchemaNames.Default);
+            builder.MigrationsHistoryTable("__ef_migrations_history", SchemaNames.Default);
         });
 
         return new NotificationDbContext(optionsBuilder.Options);
