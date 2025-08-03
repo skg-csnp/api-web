@@ -3,12 +3,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Csnp.SharedKernel.Application.Abstractions.Events.Security;
+using Csnp.SharedKernel.Application.Abstractions.Security;
 using Csnp.SharedKernel.Configuration.Settings.Security;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Csnp.Security.Infrastructure;
+namespace Csnp.Security.Infrastructure.Security;
 
 /// <summary>
 /// Implementation of <see cref="IJwtService"/> using HMAC SHA256.

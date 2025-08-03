@@ -1,8 +1,8 @@
 using Csnp.Credential.Infrastructure;
 using Csnp.EventBus.RabbitMQ;
 using Csnp.Presentation.Common.Middlewares;
-using Csnp.Security.Infrastructure;
-using Csnp.SharedKernel.Application.Abstractions.Events.Security;
+using Csnp.Security.Infrastructure.Security;
+using Csnp.SharedKernel.Application.Abstractions.Security;
 using Csnp.SharedKernel.Configuration.DependencyInjection;
 using Csnp.SharedKernel.Configuration.Extensions;
 using Csnp.SharedKernel.Configuration.Settings.Persistence;

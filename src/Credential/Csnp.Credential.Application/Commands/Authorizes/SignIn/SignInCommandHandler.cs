@@ -1,6 +1,6 @@
 using Csnp.Credential.Application.Abstractions.Persistence;
 using Csnp.SharedKernel.Application.Abstractions.Events;
-using Csnp.SharedKernel.Application.Abstractions.Events.Security;
+using Csnp.SharedKernel.Application.Abstractions.Security;
 using Csnp.SharedKernel.Application.Events;
 using MediatR;
 
