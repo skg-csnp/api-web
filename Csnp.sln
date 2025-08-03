@@ -73,12 +73,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		docs\architecture.md = docs\architecture.md
+		docs\class-design.md = docs\class-design.md
 		docs\cqrs-pattern.md = docs\cqrs-pattern.md
 		docs\domain-layer-comparison.md = docs\domain-layer-comparison.md
 		docs\domain-structure.md = docs\domain-structure.md
 		docs\dotnet-format-guide.md = docs\dotnet-format-guide.md
 		docs\event-driven-design.md = docs\event-driven-design.md
+		docs\git-iso-process.md = docs\git-iso-process.md
 		docs\restful-api-guideline.md = docs\restful-api-guideline.md
+		docs\shared-db-schema.md = docs\shared-db-schema.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csnp.SharedKernel.Configuration.Tests.Unit", "tests\Csnp.SharedKernel.Configuration.Tests.Unit\Csnp.SharedKernel.Configuration.Tests.Unit.csproj", "{4D375A83-23C6-BED0-8BBD-E4CDA3D0A9BA}"
