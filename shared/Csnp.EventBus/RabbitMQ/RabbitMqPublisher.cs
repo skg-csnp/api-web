@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json;
 using Csnp.EventBus.Abstractions;
 using Csnp.EventBus.Events;
+using Csnp.SharedKernel.Configuration.Settings.Messaging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
