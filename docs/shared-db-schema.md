@@ -78,4 +78,3 @@ To simplify local development, reduce infrastructure overhead, and accelerate MV
 ---
 
 For questions or changes to this design, contact the platform architect or lead backend developer.
-

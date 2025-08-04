@@ -67,4 +67,3 @@ shared/
 ---
 
 Let your domain speak clearly. Keep your building blocks lean and purposeful 💡
-

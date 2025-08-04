@@ -208,4 +208,3 @@ dotnet add package Swashbuckle.AspNetCore
 ---
 
 *This file should be reviewed and evolved as your architecture grows.*
-

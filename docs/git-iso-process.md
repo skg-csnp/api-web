@@ -1,9 +1,9 @@
 # GIT ISO PROCESS FOR TEAM
 
-**Document:** Git ISO Process for Team  
-**Created:** 09/07/2025  
-**Author:** ToanNV  
-**Version:** 1.0  
+**Document:** Git ISO Process for Team
+**Created:** 09/07/2025
+**Author:** ToanNV
+**Version:** 1.0
 
 ---
 
@@ -309,7 +309,7 @@ Implemented by: [Full Name]
 
 ## Reviewer Assignment:
 - [ ] Developer → Senior/Tech Lead review
-- [ ] Senior → Tech Lead review  
+- [ ] Senior → Tech Lead review
 - [ ] Tech Lead → Architect review
 
 ## Target Environment
@@ -430,7 +430,7 @@ git merge pro
 
 ### Release Approval:
 - **Patch**: Senior Developer approval
-- **Minor**: Tech Lead approval  
+- **Minor**: Tech Lead approval
 - **Major**: Tech Lead + Product Owner approval
 
 ## 9. Security Rules

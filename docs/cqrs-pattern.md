@@ -92,4 +92,3 @@ public record GetUserQuery(Guid UserId) : IRequest<UserDto>;
 ---
 
 CQRS helps enforce clean boundaries and clear flows of responsibility 🧠
-

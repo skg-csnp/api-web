@@ -76,4 +76,3 @@ public class UserSignedUpHandler : IIntegrationHandler<UserSignedUpIntegrationEv
 ---
 
 Event-driven design allows your system to grow with minimal friction and maximum flexibility 💡
-

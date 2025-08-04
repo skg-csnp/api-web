@@ -62,4 +62,3 @@ public class InvalidEmailException : Exception { ... }
 | Reusability   | High (internal only)        | High (shared across domains)     |
 
 Use both thoughtfully to support scalable and maintainable domain models.
-

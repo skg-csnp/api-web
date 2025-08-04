@@ -110,4 +110,3 @@ dotnet test
 - Health Checks: `/health`, `/health/live`, `/health/ready`
 - Metrics: Prometheus + Grafana dashboards
 - Logging: Structured Serilog logs, centralized aggregation
-

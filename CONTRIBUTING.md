@@ -77,4 +77,3 @@ We welcome contributions! Please follow these guidelines to ensure a consistent 
 ---
 
 Thanks for contributing! 💙
-

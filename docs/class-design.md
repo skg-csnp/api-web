@@ -145,4 +145,3 @@ public interface IEmailService
 ---
 
 > Consistent OOP principles help protect boundaries, improve testability, and scale codebase sustainably.
-
