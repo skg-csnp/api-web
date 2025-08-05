@@ -5,7 +5,7 @@ namespace Csnp.Notification.Infrastructure.Persistence;
 /// <summary>
 /// Represents the EF Core entity for persisting email logs.
 /// </summary>
-public class EmailLogEntity : Entity<long>
+public class EmailLogEntity : EntityRoot<long>
 {
     #region -- Methods --
 

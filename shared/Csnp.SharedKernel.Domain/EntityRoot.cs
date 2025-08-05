@@ -6,7 +6,7 @@ namespace Csnp.SharedKernel.Domain;
 /// Represents the base class for all entities in the domain model.
 /// </summary>
 /// <typeparam name="TId">The type of the unique identifier for the entity.</typeparam>
-public abstract class Entity<TId> : IEntityWithEvents
+public abstract class EntityRoot<TId> : IEntityWithEvents
 {
     #region -- Overrides --
 
@@ -17,7 +17,7 @@ public abstract class Entity<TId> : IEntityWithEvents
     /// <returns><c>true</c> if the specified object is equal to the current entity; otherwise, <c>false</c>.</returns>
     public override bool Equals(object? obj)
     {
-        if (obj is not Entity<TId> other)
+        if (obj is not EntityRoot<TId> other)
         {
             return false;
         }

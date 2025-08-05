@@ -5,7 +5,7 @@ namespace Csnp.Notification.Domain.Entities;
 /// <summary>
 /// Represents a log entry for an email that was attempted to be sent.
 /// </summary>
-public class EmailLog : Entity<long>, IAggregateRoot
+public class EmailLog : EntityRoot<long>, IAggregateRoot
 {
     #region -- Methods --
 

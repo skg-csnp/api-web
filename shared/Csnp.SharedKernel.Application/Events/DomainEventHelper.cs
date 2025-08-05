@@ -18,7 +18,7 @@ public static class DomainEventHelper
     /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     public static async Task DispatchAndClearAsync(
-        Entity<long> entity,
+        EntityRoot<long> entity,
         ICompositeDomainEventDispatcher dispatcher,
         CancellationToken cancellationToken = default)
     {

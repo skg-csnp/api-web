@@ -7,7 +7,7 @@ namespace Csnp.Credential.Domain.Entities;
 /// <summary>
 /// Represents a user within the credential domain.
 /// </summary>
-public class User : Entity<long>, IAggregateRoot
+public class User : EntityRoot<long>, IAggregateRoot
 {
     #region -- Methods --
 
