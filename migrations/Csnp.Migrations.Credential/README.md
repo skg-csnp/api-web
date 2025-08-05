@@ -17,10 +17,10 @@ This project handles database migrations and schema seeding using **Entity Frame
 Run the following commands in the **Package Manager Console** with `Csnp.Migrations.Credential` selected as **Default Project**:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 9.0.7
-Install-Package Microsoft.EntityFrameworkCore.Design -Version 9.0.7
-Install-Package Microsoft.EntityFrameworkCore.Tools -Version 9.0.7
-Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore -Version 9.0.7
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 9.0.8
+Install-Package Microsoft.EntityFrameworkCore.Design -Version 9.0.8
+Install-Package Microsoft.EntityFrameworkCore.Tools -Version 9.0.8
+Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore -Version 9.0.8
 ```
 
 ---
